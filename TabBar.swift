@@ -15,10 +15,21 @@ final class TabBarViewController: UITabBarController {
         createTabBarViewController()
     }
 
+    //MARK: - Private Methods
     private func createTabBarViewController() {
-        tabBar.isTranslucent = false
-        tabBar.barTintColor = .YPBlue
-        tabBar.tintColor = .YPWhite
+        tabBar.backgroundColor = .YPWhite
+        tabBar.isTranslucent = true
+        tabBar.barTintColor = .YPWhite
+        tabBar.tintColor = .YPBlue
+
+        //Добавление полосы разделения
+        tabBar.shadowImage = UIImage()
+        tabBar.backgroundImage = UIImage()
+        tabBar.layer.shadowOffset = CGSize(width: 0, height: -1)
+        tabBar.layer.shadowColor = UIColor.gray.cgColor
+        tabBar.layer.shadowOpacity = 0.5
+        tabBar.layer.shadowRadius = 1
+
 
         let trackerViewController = TrackerViewController()
         let trackerNavigationController = UINavigationController(rootViewController: trackerViewController)
