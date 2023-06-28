@@ -20,7 +20,7 @@ final class TabBarViewController: UITabBarController {
         tabBar.barTintColor = .YPBlue
         tabBar.tintColor = .YPWhite
 
-        let trackerViewController = TabBarViewController()
+        let trackerViewController = TrackerViewController()
         let trackerNavigationController = UINavigationController(rootViewController: trackerViewController)
 
         trackerViewController.tabBarItem = UITabBarItem(title: "Трекеры",
@@ -29,7 +29,7 @@ final class TabBarViewController: UITabBarController {
                                                        )
         trackerViewController.tabBarItem.accessibilityIdentifier = "TrackerView"
 
-        let statisticViewController = TabBarViewController()
+        let statisticViewController = StatisticViewController()
         statisticViewController.tabBarItem = UITabBarItem(title: "Статистика",
                                                           image: UIImage(named: "Hare_fill"),
                                                           selectedImage: nil
