@@ -16,7 +16,7 @@ final class TrackersViewController: UIViewController {
     static var selectedDate: Date?
 
     //MARK: - Создаем поле с датой
-    private let dateFormmater: DateFormatter = {
+    private let dateFormater: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         return dateFormatter
@@ -171,7 +171,7 @@ final class TrackersViewController: UIViewController {
     private func configViewModel(for indexPath: IndexPath) -> CellViewModel {
         let tracker = visibleCategories[indexPath.section].trackerArray[indexPath.row]
         let counter = completedTrackers.filter({$0.id == tracker.id}).count
-        let trackerIsChecked = completedTrackers.contains(TrackerRecord(id: tracker.id, date: dateFormmater.string(from: currentDate)))
+        let trackerIsChecked = completedTrackers.contains(TrackerRecord(id: tracker.id, date: dateFormater.string(from: currentDate)))
         _ = Calendar.current.compare(currentDate, to: Date(), toGranularity: .day)
         let checkButtonEnable = true
         return CellViewModel(dayCounter: counter, buttonIsChecked: trackerIsChecked, buttonIsEnable: checkButtonEnable, tracker: tracker, indexPath: indexPath)
@@ -228,11 +228,11 @@ final class TrackersViewController: UIViewController {
     }
 }
 
-//MARK: -UICollectionViewDelegate
+//MARK: - UICollectionViewDelegate
 extension TrackersViewController: UICollectionViewDelegate {
 }
 
-//MARK: -UICollectionViewDelegateFlowLayout
+//MARK: - UICollectionViewDelegateFlowLayout
 extension TrackersViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: 167, height: 148)
@@ -256,7 +256,7 @@ extension TrackersViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-//MARK: -UICollectionViewDataSource
+//MARK: - UICollectionViewDataSource
 extension TrackersViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return visibleCategories.count
@@ -321,7 +321,7 @@ extension TrackersViewController: UITextFieldDelegate {
     }
 }
 
-//MARK: -  NewHabitViewControllerDelegate
+//MARK: - NewHabitViewControllerDelegate
 extension TrackersViewController: NewHabitViewControllerDelegate {
     func addNewHabit(_ trackerCategory: TrackerCategory) {
         var newCategories: [TrackerCategory] = []
@@ -373,9 +373,9 @@ extension TrackersViewController: NewEventViewControllerDelegate {
 extension TrackersViewController: TrackerCardViewCellDelegate {
     func dayCheckButtonTapped(viewModel: CellViewModel) {
         if viewModel.buttonIsChecked {
-            completedTrackers.insert(TrackerRecord(id: viewModel.tracker.id, date: dateFormmater.string(from: currentDate)))
+            completedTrackers.insert(TrackerRecord(id: viewModel.tracker.id, date: dateFormater.string(from: currentDate)))
         } else {
-            completedTrackers.remove(TrackerRecord(id: viewModel.tracker.id, date: dateFormmater.string(from: currentDate)))
+            completedTrackers.remove(TrackerRecord(id: viewModel.tracker.id, date: dateFormater.string(from: currentDate)))
         }
         collectionView.reloadItems(at: [viewModel.indexPath])
     }

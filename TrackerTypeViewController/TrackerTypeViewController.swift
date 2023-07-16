@@ -8,7 +8,7 @@
 import UIKit
 
 //MARK: - Контроллер для выбора типа трекера: "Привычка" или "Нерегулярное событие"
-final class NewTrackerTypeController: UIViewController {
+final class NewTrackerTypeViewController: UIViewController {
 
     //MARK: - Private Properties
     private let habitButton: UIButton = {
