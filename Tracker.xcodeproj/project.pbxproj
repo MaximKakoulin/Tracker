@@ -80,12 +80,12 @@
 		94B72B822A4C3630002973BC = {
 			isa = PBXGroup;
 			children = (
+				94B72B8D2A4C3630002973BC /* TrackerViewFolder */,
+				94B72BC32A6438D9002973BC /* TrackerTypeViewController */,
 				94B72BD52A644A20002973BC /* CategoryFolder */,
 				94B72BD22A6447F3002973BC /* ScheduleFolder */,
 				94B72BCB2A643D33002973BC /* NewEventFolder */,
 				94B72BC62A64396B002973BC /* NewHabitFolder */,
-				94B72BC32A6438D9002973BC /* TrackerTypeViewController */,
-				94B72B8D2A4C3630002973BC /* TrackerViewFolder */,
 				94B72BAE2A641DE3002973BC /* TabBar */,
 				94B72BB42A64279E002973BC /* Models */,
 				94B72BC02A6436F2002973BC /* StaticViewFolder */,
@@ -433,7 +433,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PCQP34N6GP;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Tracker/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -464,7 +464,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PCQP34N6GP;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Tracker/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

@@ -144,7 +144,7 @@ final class NewHabitViewController: UIViewController {
         let text: String = habitTextField.text ?? ""
         let category: String = category ?? ""
         if let delegate = delegate {
-            delegate.addNewHabit(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: .colorSection5 ?? .green, emoji: "❤️", schedule: chosenDays)]))
+            delegate.addNewHabit(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: .colorSection5 ?? .green, emoji: "🩷", schedule: chosenDays)]))
         }
         dismiss(animated: true)
     }
