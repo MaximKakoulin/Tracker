@@ -31,7 +31,7 @@ final class TabBarViewController: UITabBarController {
         tabBar.layer.shadowRadius = 1
 
 
-        let trackerViewController = TrackerViewController()
+        let trackerViewController = TrackersViewController()
         let trackerNavigationController = UINavigationController(rootViewController: trackerViewController)
 
         trackerViewController.tabBarItem = UITabBarItem(title: "Трекеры",
