@@ -8,7 +8,7 @@
 import UIKit
 
 
-//MARK: - ВьюКонтроллер для создания новые привычки
+//MARK: - ВьюКонтроллер для создания новых привычек
 protocol NewHabitViewControllerDelegate: AnyObject {
     func addNewHabit(_ trackerCategory: TrackerCategory)
 }
