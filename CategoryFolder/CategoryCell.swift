@@ -8,8 +8,6 @@
 import UIKit
 
 
-import UIKit
-
 final class CategoryCell: UITableViewCell {
 
     static let reuseIdentifier = "CategoryCell"

@@ -61,7 +61,7 @@ final class CategoryViewController: UIViewController {
 
     //MARK: - Logic Properties
 
-    private var categoryArray: [String] = ["Важные"]
+    private var categoryArray: [String] = ["Важное"]
     private var chosenCategoryIndex: Int?
     private var categoryTableViewHeightConstraint: NSLayoutConstraint?
 
@@ -85,7 +85,7 @@ final class CategoryViewController: UIViewController {
 
     //MARK: -Private Methods
     private func createCategoryLayout() {
-        navigationItem.title = "Категории"
+        navigationItem.title = "Категория"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
         navigationItem.hidesBackButton = true
 
@@ -165,6 +165,9 @@ extension CategoryViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as! CategoryCell
         cell.backgroundColor = .YPBackgroundDay
         cell.textLabel?.text =  categoryArray[indexPath.row]
+
+        // Здесь устанавливаем шрифт для названий категорий (ячейки "Категория")
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 12, weight: .medium)
 
         return cell
     }

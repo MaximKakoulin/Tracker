@@ -170,7 +170,7 @@ extension NewHabitViewController: UITableViewDelegate {
     }
 }
 
-//MARK: -UITableViewDataSource
+//MARK: - UITableViewDataSource
 extension NewHabitViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
@@ -181,7 +181,7 @@ extension NewHabitViewController: UITableViewDataSource {
         cell.backgroundColor = .YPBackgroundDay
 
         if indexPath.row == 0 {
-            cell.textLabel?.text = "Категории"
+            cell.textLabel?.text = "Категория"
         } else if indexPath.row == 1 {
             cell.textLabel?.text = "Расписание"
         }

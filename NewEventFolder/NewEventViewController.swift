@@ -178,7 +178,7 @@ extension NewEventViewController: UITableViewDataSource {
         cell.backgroundColor = .YPBackgroundDay
 
         if indexPath.row == 0 {
-            cell.textLabel?.text = "Категории"
+            cell.textLabel?.text = "Категория"
         }
         return cell
     }

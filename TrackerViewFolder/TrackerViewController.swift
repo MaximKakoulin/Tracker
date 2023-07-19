@@ -15,7 +15,7 @@ final class TrackersViewController: UIViewController {
 
     static var selectedDate: Date?
 
-    //MARK: - Создаем поле с датой
+    //MARK: - Создаем поле с датой и временем
     private let dateFormater: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
