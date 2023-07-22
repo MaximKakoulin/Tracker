@@ -167,7 +167,7 @@ extension CategoryViewController: UITableViewDataSource {
         cell.textLabel?.text =  categoryArray[indexPath.row]
 
         // Здесь устанавливаем шрифт для названий категорий (ячейки "Категория")
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        //cell.textLabel?.font = UIFont.systemFont(ofSize: 12, weight: .medium)
 
         return cell
     }
