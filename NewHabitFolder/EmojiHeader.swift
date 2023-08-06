@@ -9,7 +9,7 @@ import UIKit
 
 
 //MARK: - Заголовок для CollectionViewEmoji
-class EmojiHeaderView: UICollectionReusableView {
+final class EmojiHeaderView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .lightGray

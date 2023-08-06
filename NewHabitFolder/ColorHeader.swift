@@ -9,7 +9,7 @@ import UIKit
 
 
 //MARK: - Заголовок для CollectionViewColor
-class ColorHeaderView: UICollectionReusableView {
+final class ColorHeaderView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 

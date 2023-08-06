@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EmojiViewCell: UICollectionViewCell {
+final class EmojiViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
