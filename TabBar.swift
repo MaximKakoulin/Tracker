@@ -7,46 +7,42 @@
 
 import UIKit
 
-
 final class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        createTabBarViewController()
-    }
-
-    //MARK: - Private Methods
-    private func createTabBarViewController() {
         tabBar.backgroundColor = .YPWhite
-        tabBar.isTranslucent = true
-        tabBar.barTintColor = .YPWhite
-        tabBar.tintColor = .YPBlue
+        tabBar.barTintColor = .YPBlue
 
-        //Добавление полосы разделения
-        tabBar.shadowImage = UIImage()
-        tabBar.backgroundImage = UIImage()
-        tabBar.layer.shadowOffset = CGSize(width: 0, height: -1)
-        tabBar.layer.shadowColor = UIColor.gray.cgColor
-        tabBar.layer.shadowOpacity = 0.5
-        tabBar.layer.shadowRadius = 1
+        // Создайте разделительную линию
+          let separatorLine = UIView(frame: CGRect(x: 0, y: 0, width: tabBar.frame.size.width, height: 1))
+          separatorLine.backgroundColor = UIColor.lightGray
+          tabBar.addSubview(separatorLine)
 
 
-        let trackerViewController = TrackersViewController()
-        let trackerNavigationController = UINavigationController(rootViewController: trackerViewController)
+        let trackerContainer = TrackerPersistentContainer()
+        let trackerStore = TrackerStore(context: trackerContainer.context)
+        let trackerCategoryStore = TrackerCategoryStore(context: trackerContainer.context, trackerDataStore: trackerStore)
+        let trackerRecordStore = TrackerRecordStore(context: trackerContainer.context)
 
-        trackerViewController.tabBarItem = UITabBarItem(title: "Трекеры",
-                                                       image: UIImage(named: "Record_circle_fill"),
-                                                       selectedImage: nil
-                                                       )
-        trackerViewController.tabBarItem.accessibilityIdentifier = "TrackerView"
+        let trackerDataController = TrackerDataController(trackerCategoryStore: trackerCategoryStore, trackerStore: trackerStore, trackerRecordStore: trackerRecordStore, context: trackerContainer.context)
+
+        let trackersViewController = TrackersViewController(trackerDataController: trackerDataController)
+
+        let trackersNavigationController = UINavigationController(rootViewController: trackersViewController)
+        trackersViewController.tabBarItem = UITabBarItem(
+            title: "Трекеры",
+            image: UIImage(named: "Record_circle_fill"),
+            selectedImage: nil)
+
 
         let statisticViewController = StatisticViewController()
-        statisticViewController.tabBarItem = UITabBarItem(title: "Статистика",
-                                                          image: UIImage(named: "Hare_fill"),
-                                                          selectedImage: nil
-                                                          )
-        statisticViewController.tabBarItem.accessibilityIdentifier = "StatisticView"
+        statisticViewController.tabBarItem = UITabBarItem(
+            title: "Статистика",
+            image: UIImage(named: "Hare_fill"),
+            selectedImage: nil)
 
-        self.viewControllers = [trackerNavigationController, statisticViewController]
+        self.viewControllers = [trackersNavigationController, statisticViewController]
+
     }
 }
