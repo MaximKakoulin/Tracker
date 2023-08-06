@@ -33,6 +33,10 @@
 		94B72BD72A644A4D002973BC /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B72BD62A644A4D002973BC /* CategoryCell.swift */; };
 		94B72BD92A644AA0002973BC /* NewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B72BD82A644AA0002973BC /* NewCategoryViewController.swift */; };
 		94B72BDB2A644B45002973BC /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B72BDA2A644B45002973BC /* String + Extension.swift */; };
+		94B72BDD2A6C33FD002973BC /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B72BDC2A6C33FD002973BC /* EmojiCell.swift */; };
+		94B72BDF2A6C43CA002973BC /* EmojiHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B72BDE2A6C43C9002973BC /* EmojiHeader.swift */; };
+		94B72BE12A6C5C38002973BC /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B72BE02A6C5C38002973BC /* ColorCell.swift */; };
+		94B72BE32A6C5D3D002973BC /* ColorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B72BE22A6C5D3D002973BC /* ColorHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +68,10 @@
 		94B72BD62A644A4D002973BC /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		94B72BD82A644AA0002973BC /* NewCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryViewController.swift; sourceTree = "<group>"; };
 		94B72BDA2A644B45002973BC /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		94B72BDC2A6C33FD002973BC /* EmojiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
+		94B72BDE2A6C43C9002973BC /* EmojiHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiHeader.swift; sourceTree = "<group>"; };
+		94B72BE02A6C5C38002973BC /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
+		94B72BE22A6C5D3D002973BC /* ColorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,7 +174,11 @@
 			isa = PBXGroup;
 			children = (
 				94B72BC42A643968002973BC /* NewHabitViewController.swift */,
+				94B72BDE2A6C43C9002973BC /* EmojiHeader.swift */,
 				94B72BC72A643C83002973BC /* NewHabitCell.swift */,
+				94B72BDC2A6C33FD002973BC /* EmojiCell.swift */,
+				94B72BE02A6C5C38002973BC /* ColorCell.swift */,
+				94B72BE22A6C5D3D002973BC /* ColorHeader.swift */,
 			);
 			path = NewHabitFolder;
 			sourceTree = "<group>";
@@ -273,6 +285,7 @@
 				94B72B8F2A4C3630002973BC /* AppDelegate.swift in Sources */,
 				94B72BDB2A644B45002973BC /* String + Extension.swift in Sources */,
 				94B72BA52A4C3F2F002973BC /* UIColor + Extensions.swift in Sources */,
+				94B72BE32A6C5D3D002973BC /* ColorHeader.swift in Sources */,
 				94B72BB02A6425CB002973BC /* MockData.swift in Sources */,
 				94B72BB32A642791002973BC /* TrackerCategory.swift in Sources */,
 				94B72BC22A64373E002973BC /* TrackerTypeViewController.swift in Sources */,
@@ -286,11 +299,14 @@
 				94B72BCF2A644658002973BC /* ScheduleViewController.swift in Sources */,
 				94B72BB62A6427F3002973BC /* Tracker.swift in Sources */,
 				94B72BBF2A642E37002973BC /* CellViewModel.swift in Sources */,
+				94B72BDF2A6C43CA002973BC /* EmojiHeader.swift in Sources */,
 				94B72B912A4C3630002973BC /* SceneDelegate.swift in Sources */,
 				94B72BD42A64489C002973BC /* CategoryViewController.swift in Sources */,
+				94B72BE12A6C5C38002973BC /* ColorCell.swift in Sources */,
 				94B72BA32A4C3E46002973BC /* TabBar.swift in Sources */,
 				94B72BCD2A643E2C002973BC /* NewEventCell.swift in Sources */,
 				94B72BC52A643968002973BC /* NewHabitViewController.swift in Sources */,
+				94B72BDD2A6C33FD002973BC /* EmojiCell.swift in Sources */,
 				94B72BC82A643C83002973BC /* NewHabitCell.swift in Sources */,
 				94B72BD72A644A4D002973BC /* CategoryCell.swift in Sources */,
 			);
