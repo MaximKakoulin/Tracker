@@ -14,6 +14,8 @@ protocol CategoryViewControllerDelegate: AnyObject {
 
 final class CategoryViewController: UIViewController {
 
+    private var dataController: TrackerDataController!
+
     weak var delegate: CategoryViewControllerDelegate?
 
     //MARK: - UILayout - Properties
@@ -81,6 +83,7 @@ final class CategoryViewController: UIViewController {
         view.backgroundColor = .YPWhite
         createCategoryLayout()
         hidePlaceholders()
+        //loadCategories()
     }
 
     //MARK: -Private Methods
@@ -129,6 +132,13 @@ final class CategoryViewController: UIViewController {
 
     private func updateCategoryTableViewHeight() {
         categoryTableViewHeightConstraint?.constant = CGFloat(categoryArray.count * 75)
+    }
+
+    private func loadCategories() {
+        categoryArray = dataController.fetchCategories()
+        updateCategoryTableViewHeight()
+        categoryTableView.reloadData()
+        hidePlaceholders()
     }
 
     //MARK: - @OBJC Methods
@@ -208,9 +218,15 @@ extension CategoryViewController: UITableViewDataSource {
 //MARK: - Extension CategoryViewController
 extension CategoryViewController: NewCategoryViewControllerDelegate {
     func didAddCategory(category: String) {
-        categoryArray.append(category)
-        updateCategoryTableViewHeight()
-        categoryTableView.reloadData()
-        hidePlaceholders()
+        do {
+            try dataController.addCategory(category)
+            categoryArray.append(category)
+            updateCategoryTableViewHeight()
+            categoryTableView.reloadData()
+            hidePlaceholders()
+        } catch {
+            print("Error saving category: \(error)")
+        }
     }
 }
+

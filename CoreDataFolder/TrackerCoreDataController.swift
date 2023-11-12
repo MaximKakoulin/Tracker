@@ -81,7 +81,7 @@ extension TrackerDataController: TrackerDataControllerProtocol {
 
     func fetchTrackerCategoriesFor(weekday: Int, animated: Bool) {
         let predicate = NSPredicate(format: "ANY %K.%K == %ld", #keyPath(TrackerCoreData.schedule), #keyPath(ScheduleCoreData.weekday), weekday)
-        var trackerCategories = trackerCategoryStore.fetchTrackerCategoryWithPredicates(predicate)
+        let trackerCategories = trackerCategoryStore.fetchTrackerCategoryWithPredicates(predicate)
         delegate?.updateView(trackerCategories: trackerCategories, animated: animated)
     }
 
@@ -147,3 +147,30 @@ extension TrackerDataController: NSFetchedResultsControllerDelegate {
         self.movedIndexes = nil
     }
 }
+
+//MARK: - Расширение для сохранения категорий
+extension TrackerDataController {
+    func addCategory(_ category: String) throws {
+        let newCategory = NSEntityDescription.insertNewObject(forEntityName: "Category", into: context)
+        newCategory.setValue(category, forKey: "name")
+
+        do {
+            try context.save()
+        } catch {
+            throw error
+        }
+    }
+
+    func fetchCategories() -> [String] {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Category")
+        do {
+            let categories = try context.fetch(fetchRequest)
+            return categories.map { $0.value(forKey: "name") as! String }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            return []
+        }
+    }
+}
+
+
