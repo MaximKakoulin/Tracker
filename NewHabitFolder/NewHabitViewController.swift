@@ -27,7 +27,7 @@ final class NewHabitViewController: UIViewController {
     private var selectedEmojiCellIndexPath: IndexPath?
 
     //MARK: - Data Emoji
-    private let emojiData: [String] = ["😀", "😍", "🥳", "🎉", "🌟", "🍎", "🚀", "🎈", "🎁", "🌈", "🍕", "🍦", "⚽️", "🎸", "📱", "📚", "💡", "👑"]
+    private let emojiData: [String] = ["🙂", "😻", "🌺", "🐶", "❤️", "😱", "😇", "😇", "🥶", "🤔","🙌", "🍔", "🥦", "🏓", "🥇", "🎸","🏝", "😪"]
 
     //MARK: - Data Colors
     private let colorData: [UIColor] = {
@@ -232,6 +232,9 @@ final class NewHabitViewController: UIViewController {
             createHabitButton.backgroundColor = .YPBlack
             createHabitButton.setTitleColor(.YPWhite, for: .normal)
 
+            let selectedEmoji = chosenEmoji ?? "❤️"
+            let selectedColor = chosenColor ?? .colorSection5
+
         } else {
             createHabitButton.isEnabled = false
             createHabitButton.backgroundColor = .YPGrey
@@ -245,14 +248,19 @@ final class NewHabitViewController: UIViewController {
 
     @objc private func createHabitButtonTapped() {
         let text: String = habitTextField.text ?? ""
-        let category: String = category ?? ""
+        let category: String = self.category ?? ""
+
+        let selectedEmoji = chosenEmoji ?? "❤️" // Значение по умолчанию, если эмодзи не выбрано
+        let selectedColor = chosenColor ?? .green // Значение по умолчанию, если цвет не выбран
+
         if let delegate = delegate {
-            delegate.addNewHabit(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: .colorSection5 ?? .green, emoji: "❤️", schedule: chosenDays)]))
+            delegate.addNewHabit(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: selectedColor, emoji: selectedEmoji, schedule: chosenDays)]))
         } else {
             print("Delegate is not set")
         }
         dismiss(animated: true)
     }
+
 }
 
 //MARK: -UITableViewDelegate
@@ -386,6 +394,9 @@ extension NewHabitViewController: UICollectionViewDelegate, UICollectionViewData
 
             chosenEmoji = selectedEmoji
         }
+
+        // Сохраните выбранные эмодзи и цвет здесь
+        checkButtonAccessibility()
     }
 }
 
