@@ -43,6 +43,9 @@
 		94B72BED2A7FF461002973BC /* TrackerCategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B72BEC2A7FF461002973BC /* TrackerCategoryStore.swift */; };
 		94B72BEF2A7FF5DE002973BC /* TrackerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B72BEE2A7FF5DE002973BC /* TrackerStore.swift */; };
 		94B72BF12A7FF696002973BC /* TrackerRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B72BF02A7FF696002973BC /* TrackerRecordStore.swift */; };
+		94BBF5C82B0A473800A2586D /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF5C72B0A473800A2586D /* CategoryViewModel.swift */; };
+		94BBF5CA2B0A476B00A2586D /* ObserverWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF5C92B0A476B00A2586D /* ObserverWrapper.swift */; };
+		94BBF5CC2B0A518300A2586D /* Date Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF5CB2B0A518300A2586D /* Date Formatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +87,9 @@
 		94B72BEC2A7FF461002973BC /* TrackerCategoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCategoryStore.swift; sourceTree = "<group>"; };
 		94B72BEE2A7FF5DE002973BC /* TrackerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerStore.swift; sourceTree = "<group>"; };
 		94B72BF02A7FF696002973BC /* TrackerRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecordStore.swift; sourceTree = "<group>"; };
+		94BBF5C72B0A473800A2586D /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		94BBF5C92B0A476B00A2586D /* ObserverWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverWrapper.swift; sourceTree = "<group>"; };
+		94BBF5CB2B0A518300A2586D /* Date Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date Formatter.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,8 +156,10 @@
 			isa = PBXGroup;
 			children = (
 				94B72BA42A4C3F2F002973BC /* UIColor + Extensions.swift */,
+				94BBF5CB2B0A518300A2586D /* Date Formatter.swift */,
 				94B72BAF2A6425CB002973BC /* MockData.swift */,
 				94B72BDA2A644B45002973BC /* String + Extension.swift */,
+				94BBF5C92B0A476B00A2586D /* ObserverWrapper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -220,6 +228,7 @@
 				94B72BD32A64489C002973BC /* CategoryViewController.swift */,
 				94B72BD62A644A4D002973BC /* CategoryCell.swift */,
 				94B72BD82A644AA0002973BC /* NewCategoryViewController.swift */,
+				94BBF5C72B0A473800A2586D /* CategoryViewModel.swift */,
 			);
 			path = CategoryFolder;
 			sourceTree = "<group>";
@@ -308,12 +317,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				94B72B932A4C3630002973BC /* TrackerViewController.swift in Sources */,
+				94BBF5CA2B0A476B00A2586D /* ObserverWrapper.swift in Sources */,
 				94B72B8F2A4C3630002973BC /* AppDelegate.swift in Sources */,
 				94B72BDB2A644B45002973BC /* String + Extension.swift in Sources */,
 				94B72BA52A4C3F2F002973BC /* UIColor + Extensions.swift in Sources */,
 				94B72BE32A6C5D3D002973BC /* ColorHeader.swift in Sources */,
 				94B72BF12A7FF696002973BC /* TrackerRecordStore.swift in Sources */,
 				94B72BB02A6425CB002973BC /* MockData.swift in Sources */,
+				94BBF5C82B0A473800A2586D /* CategoryViewModel.swift in Sources */,
 				94B72BB32A642791002973BC /* TrackerCategory.swift in Sources */,
 				94B72BC22A64373E002973BC /* TrackerTypeViewController.swift in Sources */,
 				94B72BCA2A643D28002973BC /* NewEventViewController.swift in Sources */,
@@ -325,6 +336,7 @@
 				94B72BB82A6428A0002973BC /* TrackerRecord.swift in Sources */,
 				94B72BD92A644AA0002973BC /* NewCategoryViewController.swift in Sources */,
 				94B72BA72A4C492F002973BC /* StatisticViewController.swift in Sources */,
+				94BBF5CC2B0A518300A2586D /* Date Formatter.swift in Sources */,
 				94B72BEF2A7FF5DE002973BC /* TrackerStore.swift in Sources */,
 				94B72BCF2A644658002973BC /* ScheduleViewController.swift in Sources */,
 				94B72BB62A6427F3002973BC /* Tracker.swift in Sources */,

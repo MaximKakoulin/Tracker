@@ -9,7 +9,6 @@ import Foundation
 import CoreData
 
 
-//MARK: - Protocol TrackerRecordStoreProtocol
 protocol TrackerRecordStoreProtocol: AnyObject {
     func addTrackerRecordToCoreData(id: UUID, date: String)
     func deleteTrackerRecord(id: UUID, date: String)
@@ -17,16 +16,13 @@ protocol TrackerRecordStoreProtocol: AnyObject {
     func fetchTrackerRecordCount(id: UUID) -> Int
 }
 
-//MARK: - Class TrackerRecordStore
 final class TrackerRecordStore: NSObject {
-    private let context: NSManagedObjectContext
-
+    let context: NSManagedObjectContext
     init(context: NSManagedObjectContext) {
         self.context = context
     }
 }
 
-//MARK: - Extension TrackerRecordStoreProtocol
 extension TrackerRecordStore: TrackerRecordStoreProtocol {
     func addTrackerRecordToCoreData(id: UUID, date: String) {
         let newTrackerRecord = TrackerRecordCoreData(context: context)
@@ -50,7 +46,7 @@ extension TrackerRecordStore: TrackerRecordStoreProtocol {
             format: "%K == %@",
             #keyPath(TrackerRecordCoreData.date), date)
 
-        //Объединяем предикаты через NSCompoundPredicate
+        ///Объединяем предикаты через NSCompoundPredicate
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateID, predicateDate])
 
         do {
@@ -94,9 +90,13 @@ extension TrackerRecordStore: TrackerRecordStoreProtocol {
 
         do {
             let trackerCount = try context.count(for: fetchRequest)
-            return (trackerCount != 0) ? true : false
+            if trackerCount > 0 {
+                return true
+            } else {
+                return false
+            }
         } catch {
-            print("Exactly tracker doesn't exists - \(error)")
+            print("Exacly tracker doesn't exisists - \(error)")
             return false
         }
     }

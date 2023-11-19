@@ -15,25 +15,12 @@ final class TrackersViewController: UIViewController {
 
     static var selectedDate: Date?
 
-    //MARK: - Переменные трекера
-    private var categories: [TrackerCategory] = []
-    private var visibleCategories: [TrackerCategory] = []
-    private var completedTrackers: Set<TrackerRecord> = []
-    private var currentDate: Date = Date()
-
-    //Для трекеров
-    private var insertedIndexesInSearchTextField: [IndexPath] = []
-    private var deletedIndexesInSearchTextField: [IndexPath] = []
-    //Для Секций
-    private var insertedSectionsInSearchTextField: IndexSet = []
-    private var deletedSectionsInSearchTextField: IndexSet = []
-    //Блок корДаты
-    private let trackerDataController: TrackerDataControllerProtocol
-
-    //MARK: - Создаем поле с датой и временем
-    private let dateFormater: DateFormatter = {
+    //MARK: - Private Properties
+    private let dateFormmater: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        dateFormatter.dateStyle = .short
         return dateFormatter
     }()
 
@@ -48,7 +35,9 @@ final class TrackersViewController: UIViewController {
         return datePicker
     }()
 
-    //MARK: - Создаем строку поиска
+
+    //---------------------------------------------------------------
+    //MARK: -Блок поисковой строки
     private let searchStackView: UIStackView = {
         let searchStackView = UIStackView()
         searchStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +49,8 @@ final class TrackersViewController: UIViewController {
     private let searchTextField: UISearchTextField = {
         let searchTextField = UISearchTextField()
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
-        searchTextField.placeholder = "Поиск"
+        searchTextField.placeholder = NSLocalizedString(
+            "Поиск", comment: "")
         searchTextField.addTarget(nil, action: #selector(searchTextFieldEditingChanged), for: .editingChanged)
         return searchTextField
     }()
@@ -68,14 +58,15 @@ final class TrackersViewController: UIViewController {
     private let cancelSearchButton: UIButton = {
         let cancelSearchButton = UIButton()
         cancelSearchButton.translatesAutoresizingMaskIntoConstraints = false
-        cancelSearchButton.setTitle("Отменить", for: .normal)
+        cancelSearchButton.setTitle(NSLocalizedString(
+            "Отмена", comment: ""), for: .normal)
         cancelSearchButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         cancelSearchButton.setTitleColor(.YPBlue, for: .normal)
         cancelSearchButton.addTarget(nil, action: #selector(cancelSearchButtonTapped), for: .touchUpInside)
         return cancelSearchButton
     }()
+    //----------------------------------------------------------------------
 
-    //MARK: - Создаем коллекшинВью + плейсХолдер
     private let collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -98,9 +89,28 @@ final class TrackersViewController: UIViewController {
         return textPlaceholder
     }()
 
+    //MARK: -Variable
+    private var visibleCategories: [TrackerCategory] = []
+    private var currentDate: Date = Date()
+    private let categoryViewModel: CategoryViewModel
+
+    //Для трекеров
+    private var insertedIndexesInSearchTextField: [IndexPath] = []
+    private var deletedIndexesInSearchTextField: [IndexPath] = []
+    //Для Секций
+    private var insertedSectionsInSearchTextField: IndexSet = []
+    private var deletedSectionsInSearchTextField: IndexSet = []
+
+    //Блок корДаты
+    private let trackerDataController: TrackerDataControllerProtocol
+    private var trackerCategoryStore: TrackerCategoryStore
+
+
     //MARK: -Initializers
-    init(trackerDataController: TrackerDataControllerProtocol) {
+    init(trackerDataController: TrackerDataControllerProtocol, trackerCategoryStore: TrackerCategoryStore, categoryViewModel: CategoryViewModel) {
         self.trackerDataController = trackerDataController
+        self.trackerCategoryStore = trackerCategoryStore
+        self.categoryViewModel = categoryViewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -124,14 +134,18 @@ final class TrackersViewController: UIViewController {
 
     //MARK: - Private Methods
     private func configNavigationBar() {
+//        let formattedDate = dateFormmater.string(from: datePicker.date)
         let leftButton = UIBarButtonItem(image: UIImage(named: "Plus"), style: .done, target: self, action: #selector(addTrackerButtonTapped))
         let rightButton = UIBarButtonItem(customView: datePicker)
         leftButton.tintColor = .YPBlack
 
+
+
         navigationItem.leftBarButtonItem = leftButton
         navigationItem.rightBarButtonItem = rightButton
 
-        navigationItem.title = "Трекеры"
+//        navigationItem.rightBarButtonItem?.title = formattedDate
+        navigationItem.title = NSLocalizedString("Трекеры", comment: "")
         navigationController?.navigationBar.prefersLargeTitles = true
 
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
@@ -143,6 +157,9 @@ final class TrackersViewController: UIViewController {
 
         collectionView.register(TrackerCardViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
+
+        // Скрытие вертикальной полосы прокрутки
+            collectionView.showsVerticalScrollIndicator = false
     }
 
     private func createLayout() {
@@ -150,15 +167,17 @@ final class TrackersViewController: UIViewController {
             view.addSubview($0)}
         searchStackView.addArrangedSubview(searchTextField)
 
+        ///Отступ
+        let indend: Double = 16.0
         NSLayoutConstraint.activate([
             //Поле поиска
-            searchStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            searchStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            searchStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: indend),
+            searchStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -indend),
             searchStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             //Коллекция
             collectionView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 20),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: indend),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -indend),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             //Картинка-заглушка
             imagePlaceholder.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor),
@@ -178,10 +197,14 @@ final class TrackersViewController: UIViewController {
             switch type {
             case .noTrackers:
                 imagePlaceholder.image = UIImage(named: "Image_placeholder")
-                textPlaceholder.text = "Что будем отслеживать?"
+                textPlaceholder.text = NSLocalizedString(
+                    "Что будем отслеживать?",
+                    comment: "")
             case .notFoundTrackers:
                 imagePlaceholder.image = UIImage(named: "NotFound_placeholder")
-                textPlaceholder.text = "Ничего не найдено"
+                textPlaceholder.text = NSLocalizedString(
+                    "Ничего не найдено:(",
+                    comment: "")
             }
         } else {
             imagePlaceholder.isHidden = true
@@ -192,7 +215,7 @@ final class TrackersViewController: UIViewController {
     private func configViewModel(for indexPath: IndexPath) -> CellViewModel {
         let tracker = visibleCategories[indexPath.section].trackerArray[indexPath.row]
         let counter = trackerDataController.fetchRecordsCountForId(tracker.id)
-        let trackerIsChecked = trackerDataController.checkTrackerRecordExists(id: tracker.id, date: dateFormater.string(from: currentDate))
+        let trackerIsChecked = trackerDataController.checkTrackerRecordExists(id: tracker.id, date: dateFormmater.string(from: currentDate))
         _ = Calendar.current.compare(currentDate, to: Date(), toGranularity: .day)
         let checkButtonEnable = true
         return CellViewModel(dayCounter: counter, buttonIsChecked: trackerIsChecked, buttonIsEnable: checkButtonEnable, tracker: tracker, indexPath: indexPath)
@@ -226,9 +249,9 @@ final class TrackersViewController: UIViewController {
 
     //MARK: - @OBJC Methods
     @objc private func addTrackerButtonTapped() {
-        let newHabitViewController = NewHabitViewController()
+        let newHabitViewController = NewHabitViewController(trackerCategoryStore: trackerCategoryStore, categoryViewModel: categoryViewModel)
         newHabitViewController.delegate = self
-        let newEventViewController = NewEventViewController()
+        let newEventViewController = NewEventViewController(trackerCategoryStore: trackerCategoryStore, categoryViewModel: categoryViewModel)
         newEventViewController.delegate = self
         let NewTrackerTypeViewController = NewTrackerTypeViewController(newHabitViewController: newHabitViewController, newEventViewController: newEventViewController)
         let modalNavigationController = UINavigationController(rootViewController: NewTrackerTypeViewController)
@@ -367,9 +390,9 @@ extension TrackersViewController: NewEventViewControllerDelegate {
 extension TrackersViewController: TrackerCardViewCellDelegate {
     func dayCheckButtonTapped(viewModel: CellViewModel) {
         if viewModel.buttonIsChecked {
-            trackerDataController.addTrackerRecord(id: viewModel.tracker.id, date: dateFormater.string(from: currentDate))
+            trackerDataController.addTrackerRecord(id: viewModel.tracker.id, date: dateFormmater.string(from: currentDate))
         } else {
-            trackerDataController.deleteTrackerRecord(id: viewModel.tracker.id, date: dateFormater.string(from: currentDate))
+            trackerDataController.deleteTrackerRecord(id: viewModel.tracker.id, date: dateFormmater.string(from: currentDate))
         }
         collectionView.reloadItems(at: [viewModel.indexPath])
     }

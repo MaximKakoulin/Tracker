@@ -5,23 +5,20 @@
 //  Created by Максим on 06.08.2023.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
-//MARK: - Обработка ошибок
 enum TrackerStoreError: Error {
     case decodingError
     case fetchError
 }
 
-//MARK: - Protocol TrackerStoreProtocol
 protocol TrackerStoreProtocol: AnyObject {
     func convertCoreDataToTracker(_ entity: TrackerCoreData) throws -> Tracker
     func convertTrackerToCoreData(_ tracker: Tracker) -> TrackerCoreData
 }
 
-//MARK: - Class TrackerStore
-final class TrackerStore: NSObject {
+class TrackerStore: NSObject {
     private let context: NSManagedObjectContext
 
     init(context: NSManagedObjectContext) {
@@ -52,7 +49,6 @@ final class TrackerStore: NSObject {
 
 }
 
-//MARK: - Extension TrackerStoreProtocol
 extension TrackerStore: TrackerStoreProtocol {
     func convertTrackerToCoreData(_ tracker: Tracker) -> TrackerCoreData {
         let trackerCoreData = TrackerCoreData(context: context)
