@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CategoryViewModel {
+final class CategoryViewModel {
 
     private let trackerCategoryStore: TrackerCategoryStore
     @Observable private(set) var categories: [TrackerCategoryCoreData] = []
