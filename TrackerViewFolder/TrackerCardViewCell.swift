@@ -12,9 +12,10 @@ protocol TrackerCardViewCellDelegate: AnyObject {
 }
 
 final class TrackerCardViewCell: UICollectionViewCell {
+
     weak var delegate: TrackerCardViewCellDelegate?
 
-    //MARK: - Private Properties
+    //MARK: -Private Properties
     private let cardBackgroundView: UIView = {
         let cardBackgroundView = UIView()
         cardBackgroundView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +42,6 @@ final class TrackerCardViewCell: UICollectionViewCell {
         taskLabel.textColor = .YPWhite
         return taskLabel
     }()
-
     private let dayLabel: UILabel = {
         let dayLabel = UILabel()
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -49,13 +49,11 @@ final class TrackerCardViewCell: UICollectionViewCell {
         dayLabel.textColor = .YPBlack
         return dayLabel
     }()
-
     private let dayCheckButton: UIButton = {
         let dayCheckButton = UIButton()
         dayCheckButton.translatesAutoresizingMaskIntoConstraints = false
         dayCheckButton.setTitle("", for: .normal)
         dayCheckButton.tintColor = .YPWhite
-        dayCheckButton.backgroundColor = .colorSection5
         dayCheckButton.layer.cornerRadius = 16
         dayCheckButton.layer.masksToBounds = true
         dayCheckButton.imageView?.contentMode = .scaleAspectFill
@@ -66,12 +64,13 @@ final class TrackerCardViewCell: UICollectionViewCell {
 
     private var viewModel: CellViewModel?
 
-    //MARK: - Public Methods
+    //MARK: -Public Methods
     func configCell(viewModel: CellViewModel) {
         taskLabel.text = viewModel.tracker.name
         emojiLabel.text = viewModel.tracker.emoji
         dayLabel.text = "\(viewModel.dayCounter) \(daysDeclension(for: viewModel.dayCounter))"
         cardBackgroundView.backgroundColor = viewModel.tracker.color
+        dayCheckButton.backgroundColor = viewModel.tracker.color
         self.viewModel = viewModel
         dayCheckButtonState()
         dayCheckButtonIsEnabled()
@@ -129,7 +128,7 @@ final class TrackerCardViewCell: UICollectionViewCell {
         }
     }
 
-    //MARK: - Обновления состояния кнопки dayCheckButton в зависимости от значения свойства buttonIsChecked
+    //MARK: -Обновления состояния кнопки dayCheckButton в зависимости от значения свойства buttonIsChecked
     func dayCheckButtonState() {
         let symbolConfig = UIImage.SymbolConfiguration(pointSize: 10, weight: .bold)
         var symbolImage: UIImage?
@@ -161,7 +160,7 @@ final class TrackerCardViewCell: UICollectionViewCell {
         }
     }
 
-    //MARK: - @OBJC Methods
+    //MARK: -@OBJC Methods
     @objc private func dayCheckButtonTapped(_ sender: UIButton) {
         viewModel?.buttonIsChecked.toggle()
         dayCheckButtonState()
