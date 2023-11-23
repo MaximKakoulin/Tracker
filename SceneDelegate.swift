@@ -13,12 +13,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        let tabBarViewController = TabBarViewController()
-        window?.rootViewController = tabBarViewController
+
+        let onboardingShown = UserDefaults.standard.bool(forKey: "hasCompletedTransition")
+        if !onboardingShown {
+            // Показать OnboardingViewController только если еще не показывали
+            let onboardingViewController = OnboardingViewController()
+            window?.rootViewController = onboardingViewController
+        } else {
+            // Показать TabBarViewController если Onboarding уже был показан
+            let tabBarViewController = TabBarViewController()
+            window?.rootViewController = tabBarViewController
+        }
+
         window?.makeKeyAndVisible()
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
