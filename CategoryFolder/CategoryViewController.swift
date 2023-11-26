@@ -154,13 +154,17 @@ extension CategoryViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let categories = viewModel.categories.map { $0.headerName }
-        guard let selectedTitle = categories[indexPath.row] else { return }
-        delegate?.addCategory(selectedTitle, index: indexPath.row)
-        navigationController?.popViewController(animated: true)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
+           viewModel.selectCategory(at: indexPath)
+
+           // Дополнительные действия после выбора категории
+           if let selectedTitle = viewModel.selectedCategory?.headerName {
+               delegate?.addCategory(selectedTitle, index: indexPath.row)
+               navigationController?.popViewController(animated: true)
+           }
+
+           tableView.deselectRow(at: indexPath, animated: true)
+       }
+   }
 
 //MARK: -UITableViewDataSource
 extension CategoryViewController: UITableViewDataSource {

@@ -23,7 +23,12 @@ final class CategoryViewModel {
 
     func fetchAllTrackerCategories() {
         /// Здесь просто вызываем метод fetchTrackerCategoriesFor у TrackerDataController
-        let fetchedResulstController = trackerCategoryStore.fetchResultControllerForCategory
-        categories = fetchedResulstController.fetchedObjects ?? []
+        let fetchedResultsController = trackerCategoryStore.fetchResultControllerForCategory
+        categories = fetchedResultsController.fetchedObjects ?? []
+    }
+
+    func selectCategory(at indexPath: IndexPath) {
+        selectedCategory = categories[indexPath.row]
+        self.selectedCategory = selectedCategory
     }
 }

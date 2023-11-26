@@ -48,6 +48,7 @@
 		94BBF5CC2B0A518300A2586D /* Date Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF5CB2B0A518300A2586D /* Date Formatter.swift */; };
 		94BBF5CE2B0F31E600A2586D /* UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF5CD2B0F31E600A2586D /* UIPageViewController.swift */; };
 		94BBF5D02B0F31F800A2586D /* CustomPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF5CF2B0F31F800A2586D /* CustomPageViewController.swift */; };
+		94BBF5D32B10A9F000A2586D /* TrackersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF5D22B10A9F000A2586D /* TrackersViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		94BBF5CB2B0A518300A2586D /* Date Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date Formatter.swift"; sourceTree = "<group>"; };
 		94BBF5CD2B0F31E600A2586D /* UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewController.swift; sourceTree = "<group>"; };
 		94BBF5CF2B0F31F800A2586D /* CustomPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageViewController.swift; sourceTree = "<group>"; };
+		94BBF5D22B10A9F000A2586D /* TrackersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				94B72B922A4C3630002973BC /* TrackerViewController.swift */,
 				94B72BB92A642B21002973BC /* TrackerCardViewCell.swift */,
 				94B72BBC2A642D77002973BC /* HeaderCollectionReusableView.swift */,
+				94BBF5D22B10A9F000A2586D /* TrackersViewModel.swift */,
 			);
 			path = TrackerViewFolder;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				94B72BB82A6428A0002973BC /* TrackerRecord.swift in Sources */,
 				94B72BD92A644AA0002973BC /* NewCategoryViewController.swift in Sources */,
 				94B72BA72A4C492F002973BC /* StatisticViewController.swift in Sources */,
+				94BBF5D32B10A9F000A2586D /* TrackersViewModel.swift in Sources */,
 				94BBF5CC2B0A518300A2586D /* Date Formatter.swift in Sources */,
 				94B72BEF2A7FF5DE002973BC /* TrackerStore.swift in Sources */,
 				94B72BCF2A644658002973BC /* ScheduleViewController.swift in Sources */,
