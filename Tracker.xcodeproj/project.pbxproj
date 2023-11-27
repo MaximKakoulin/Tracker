@@ -46,6 +46,9 @@
 		94BBF5C82B0A473800A2586D /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF5C72B0A473800A2586D /* CategoryViewModel.swift */; };
 		94BBF5CA2B0A476B00A2586D /* ObserverWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF5C92B0A476B00A2586D /* ObserverWrapper.swift */; };
 		94BBF5CC2B0A518300A2586D /* Date Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF5CB2B0A518300A2586D /* Date Formatter.swift */; };
+		94BBF5CE2B0F31E600A2586D /* UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF5CD2B0F31E600A2586D /* UIPageViewController.swift */; };
+		94BBF5D02B0F31F800A2586D /* CustomPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF5CF2B0F31F800A2586D /* CustomPageViewController.swift */; };
+		94BBF5D32B10A9F000A2586D /* TrackersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF5D22B10A9F000A2586D /* TrackersViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +93,9 @@
 		94BBF5C72B0A473800A2586D /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		94BBF5C92B0A476B00A2586D /* ObserverWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverWrapper.swift; sourceTree = "<group>"; };
 		94BBF5CB2B0A518300A2586D /* Date Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date Formatter.swift"; sourceTree = "<group>"; };
+		94BBF5CD2B0F31E600A2586D /* UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewController.swift; sourceTree = "<group>"; };
+		94BBF5CF2B0F31F800A2586D /* CustomPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageViewController.swift; sourceTree = "<group>"; };
+		94BBF5D22B10A9F000A2586D /* TrackersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,7 @@
 		94B72B822A4C3630002973BC = {
 			isa = PBXGroup;
 			children = (
+				94BBF5D12B0F320500A2586D /* UIPageViewFolder */,
 				94B72B8D2A4C3630002973BC /* TrackerViewFolder */,
 				94B72BC32A6438D9002973BC /* TrackerTypeViewController */,
 				94B72BD52A644A20002973BC /* CategoryFolder */,
@@ -140,6 +147,7 @@
 				94B72B922A4C3630002973BC /* TrackerViewController.swift */,
 				94B72BB92A642B21002973BC /* TrackerCardViewCell.swift */,
 				94B72BBC2A642D77002973BC /* HeaderCollectionReusableView.swift */,
+				94BBF5D22B10A9F000A2586D /* TrackersViewModel.swift */,
 			);
 			path = TrackerViewFolder;
 			sourceTree = "<group>";
@@ -246,6 +254,15 @@
 			path = CoreDataFolder;
 			sourceTree = "<group>";
 		};
+		94BBF5D12B0F320500A2586D /* UIPageViewFolder */ = {
+			isa = PBXGroup;
+			children = (
+				94BBF5CD2B0F31E600A2586D /* UIPageViewController.swift */,
+				94BBF5CF2B0F31F800A2586D /* CustomPageViewController.swift */,
+			);
+			path = UIPageViewFolder;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -318,6 +335,7 @@
 			files = (
 				94B72B932A4C3630002973BC /* TrackerViewController.swift in Sources */,
 				94BBF5CA2B0A476B00A2586D /* ObserverWrapper.swift in Sources */,
+				94BBF5D02B0F31F800A2586D /* CustomPageViewController.swift in Sources */,
 				94B72B8F2A4C3630002973BC /* AppDelegate.swift in Sources */,
 				94B72BDB2A644B45002973BC /* String + Extension.swift in Sources */,
 				94B72BA52A4C3F2F002973BC /* UIColor + Extensions.swift in Sources */,
@@ -336,9 +354,11 @@
 				94B72BB82A6428A0002973BC /* TrackerRecord.swift in Sources */,
 				94B72BD92A644AA0002973BC /* NewCategoryViewController.swift in Sources */,
 				94B72BA72A4C492F002973BC /* StatisticViewController.swift in Sources */,
+				94BBF5D32B10A9F000A2586D /* TrackersViewModel.swift in Sources */,
 				94BBF5CC2B0A518300A2586D /* Date Formatter.swift in Sources */,
 				94B72BEF2A7FF5DE002973BC /* TrackerStore.swift in Sources */,
 				94B72BCF2A644658002973BC /* ScheduleViewController.swift in Sources */,
+				94BBF5CE2B0F31E600A2586D /* UIPageViewController.swift in Sources */,
 				94B72BB62A6427F3002973BC /* Tracker.swift in Sources */,
 				94B72BBF2A642E37002973BC /* CellViewModel.swift in Sources */,
 				94B72BDF2A6C43CA002973BC /* EmojiHeader.swift in Sources */,
