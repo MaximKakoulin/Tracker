@@ -30,7 +30,7 @@ final class ScheduleViewController: UIViewController {
     private let okButton: UIButton = {
         let okButton = UIButton()
         okButton.translatesAutoresizingMaskIntoConstraints = false
-        okButton.setTitle("doneButton", for: .normal)
+        okButton.setTitle("Готово", for: .normal)
         okButton.backgroundColor = .YPBlack
         okButton.setTitleColor(.YPWhite, for: .normal)
         okButton.layer.cornerRadius = 16
@@ -48,7 +48,7 @@ final class ScheduleViewController: UIViewController {
     init(chosenDays: [Int]) {
         super.init(nibName: nil, bundle: nil)
 
-        //calendar.locale = Locale(identifier: "ru_RU")
+        calendar.locale = Locale(identifier: "ru_RU")
         days = calendar.weekdaySymbols
         finalList = chosenDays
         setupInitialSelectedDays()
@@ -71,8 +71,7 @@ final class ScheduleViewController: UIViewController {
 
     // MARK: - Private Methods
     private func createScheduleLayout() {
-        navigationItem.title = NSLocalizedString(
-            "scheduleTitle", comment: "")
+        navigationItem.title = "Расписание"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
         navigationItem.hidesBackButton = true
 

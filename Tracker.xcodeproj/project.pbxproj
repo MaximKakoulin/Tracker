@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9421FDD32B175D0D0008F7F6 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421FDD22B175D0D0008F7F6 /* FiltersViewController.swift */; };
+		9421FDD52B175D290008F7F6 /* FiltersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421FDD42B175D290008F7F6 /* FiltersCell.swift */; };
 		942C54862B1749B2009CD716 /* EditingTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942C54852B1749B2009CD716 /* EditingTrackerViewController.swift */; };
 		942C54882B1749E0009CD716 /* EditingTrackerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942C54872B1749E0009CD716 /* EditingTrackerCell.swift */; };
 		942C548A2B174F07009CD716 /* CustomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942C54892B174F07009CD716 /* CustomInfoView.swift */; };
@@ -60,6 +62,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9421FDD22B175D0D0008F7F6 /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
+		9421FDD42B175D290008F7F6 /* FiltersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersCell.swift; sourceTree = "<group>"; };
 		942C54852B1749B2009CD716 /* EditingTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingTrackerViewController.swift; sourceTree = "<group>"; };
 		942C54872B1749E0009CD716 /* EditingTrackerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingTrackerCell.swift; sourceTree = "<group>"; };
 		942C54892B174F07009CD716 /* CustomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInfoView.swift; sourceTree = "<group>"; };
@@ -137,9 +141,19 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		9421FDD12B175CF00008F7F6 /* FiltersFolder */ = {
+			isa = PBXGroup;
+			children = (
+				9421FDD22B175D0D0008F7F6 /* FiltersViewController.swift */,
+				9421FDD42B175D290008F7F6 /* FiltersCell.swift */,
+			);
+			path = FiltersFolder;
+			sourceTree = "<group>";
+		};
 		94B72B822A4C3630002973BC = {
 			isa = PBXGroup;
 			children = (
+				9421FDD12B175CF00008F7F6 /* FiltersFolder */,
 				94BBF5E22B1719EC00A2586D /* AnalyticsServise */,
 				94BBF5D12B0F320500A2586D /* UIPageViewFolder */,
 				94B72B8D2A4C3630002973BC /* TrackerViewFolder */,
@@ -445,6 +459,7 @@
 				94BBF5C82B0A473800A2586D /* CategoryViewModel.swift in Sources */,
 				94B72BB32A642791002973BC /* TrackerCategory.swift in Sources */,
 				94B72BC22A64373E002973BC /* TrackerTypeViewController.swift in Sources */,
+				9421FDD52B175D290008F7F6 /* FiltersCell.swift in Sources */,
 				94B72BCA2A643D28002973BC /* NewEventViewController.swift in Sources */,
 				94B72BBD2A642D77002973BC /* HeaderCollectionReusableView.swift in Sources */,
 				94B72BEB2A7FF436002973BC /* TrackerPersistentContainer.swift in Sources */,
@@ -480,6 +495,7 @@
 				94B72BC82A643C83002973BC /* NewHabitCell.swift in Sources */,
 				94B72BE92A7FF263002973BC /* TrackerCoreDataController.swift in Sources */,
 				94B72BE72A7FEDD4002973BC /* TrackerCoreData.xcdatamodeld in Sources */,
+				9421FDD32B175D0D0008F7F6 /* FiltersViewController.swift in Sources */,
 				94B72BD72A644A4D002973BC /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

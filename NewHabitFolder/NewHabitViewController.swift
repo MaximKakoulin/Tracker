@@ -48,7 +48,7 @@ final class NewHabitViewController: UIViewController {
         scrollView.showsVerticalScrollIndicator = true
         scrollView.backgroundColor = .YPWhite
         scrollView.contentSize = contentSize
-        //scrollView.isUserInteractionEnabled = false
+        //        scrollView.isUserInteractionEnabled = false
         return scrollView
     }()
 
