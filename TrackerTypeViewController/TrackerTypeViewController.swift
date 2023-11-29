@@ -14,7 +14,7 @@ final class NewTrackerTypeViewController: UIViewController {
     private let habitButton: UIButton = {
         let habitButton = UIButton()
         habitButton.translatesAutoresizingMaskIntoConstraints = false
-        habitButton.setTitle("Привычка", for: .normal)
+        habitButton.setTitle("habitTypeButton", for: .normal)
         habitButton.setTitleColor(.YPWhite, for: .normal)
         habitButton.backgroundColor = .YPBlack
         habitButton.layer.cornerRadius = 16
@@ -28,7 +28,7 @@ final class NewTrackerTypeViewController: UIViewController {
     private let eventButton: UIButton = {
         let eventButton = UIButton()
         eventButton.translatesAutoresizingMaskIntoConstraints = false
-        eventButton.setTitle("Нерегулярное событие", for: .normal)
+        eventButton.setTitle("eventTypeButton", for: .normal)
         eventButton.setTitleColor(.YPWhite, for: .normal)
         eventButton.backgroundColor = .YPBlack
         eventButton.layer.cornerRadius = 16
@@ -62,7 +62,8 @@ final class NewTrackerTypeViewController: UIViewController {
 
     //MARK: - Private Methods
     private func createLayout() {
-        navigationItem.title = "Создание Трекера"
+        navigationItem.title = NSLocalizedString(
+            "trackerTypeVCTitle", comment: "")
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
 
         [habitButton, eventButton].forEach {

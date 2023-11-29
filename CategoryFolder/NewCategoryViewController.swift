@@ -25,7 +25,7 @@ final class NewCategoryViewController: UIViewController {
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.YPGrey as Any]
         newCategoryTextField.attributedPlaceholder = NSAttributedString(
             string: NSLocalizedString(
-                "Название категории", comment: ""), attributes: attributes)
+                "newCategoryTextField", comment: ""), attributes: attributes)
         newCategoryTextField.layer.masksToBounds = true
         newCategoryTextField.layer.cornerRadius = 16
         return newCategoryTextField
@@ -35,7 +35,7 @@ final class NewCategoryViewController: UIViewController {
         let readyButton = UIButton()
         readyButton.translatesAutoresizingMaskIntoConstraints = false
         readyButton.setTitle(NSLocalizedString(
-            "Готово", comment: ""), for: .normal)
+            "doneButton", comment: ""), for: .normal)
         readyButton.setTitleColor(.YPBlack, for: .normal)
         readyButton.layer.cornerRadius = 16
         readyButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -72,7 +72,7 @@ final class NewCategoryViewController: UIViewController {
     //MARK: -Private Methods
     private func createNewCategoryLayout() {
         navigationItem.title = NSLocalizedString(
-            "Новая категория", comment: "")
+            "newCategoryTitle", comment: "")
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
         navigationItem.hidesBackButton = true
 
