@@ -48,7 +48,7 @@ final class ScheduleViewController: UIViewController {
     init(chosenDays: [Int]) {
         super.init(nibName: nil, bundle: nil)
 
-        calendar.locale = Locale(identifier: "ru_RU")
+        //calendar.locale = Locale(identifier: "ru_RU")
         days = calendar.weekdaySymbols
         finalList = chosenDays
         setupInitialSelectedDays()

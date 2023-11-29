@@ -123,10 +123,11 @@ final class NewEventViewController: UIViewController {
     }()
 
     private var category: String?
-    private var choosedCategoryIndex: Int?
+    private var chosenCategoryIndex: Int?
     private var chosenDays: [Int] = Array(0...6)
     private var chosenColor: UIColor?
     private var chosenEmoji: String?
+    private var isEvent: Bool = true
     private var selectedColorCellIndexPath: IndexPath?
     private var selectedEmojiCellIndexPath: IndexPath?
 
@@ -235,7 +236,7 @@ final class NewEventViewController: UIViewController {
         ])
     }
 
-    private func checkButtonAccessability() {
+    private func checkButtonAccessibility() {
         if  let text = eventTextField.text,
             !text.isEmpty,
             category != nil,
@@ -262,7 +263,7 @@ final class NewEventViewController: UIViewController {
         let color: UIColor = chosenColor ?? .gray
         let emoji: String = chosenEmoji ?? ""
         if let delegate = delegate {
-            delegate.addNewEvent(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: color, emoji: emoji, schedule: chosenDays)]))
+            delegate.addNewEvent(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: color, emoji: emoji, schedule: chosenDays, isEvent: isEvent, isPinned: false, category: category)]))
         } else {
             print("Delegate is not set")
         }
@@ -447,8 +448,8 @@ extension NewEventViewController: CategoryViewControllerDelegate {
             cell.detailTextLabel?.text = category
         }
         self.category = category
-        choosedCategoryIndex = index
-        checkButtonAccessability()
+        chosenCategoryIndex = index
+        checkButtonAccessibility()
     }
 }
 
@@ -462,7 +463,7 @@ extension NewEventViewController: UITextFieldDelegate {
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        checkButtonAccessability()
+        checkButtonAccessibility()
         eventTextField.resignFirstResponder()
         return true
     }

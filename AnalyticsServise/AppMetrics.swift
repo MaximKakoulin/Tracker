@@ -17,9 +17,9 @@ class AppMetrics: AppMetricsProtocol {
     func reportEvent(screen: String, event: AppMetricsParams.Event, item: AppMetricsParams.Item?) {
         var parameters = ["screen" : screen]
         if let item {
-            paramenters["item"] = item.rawValue
+            parameters["item"] = item.rawValue
          }
         print("Event:", event.rawValue, parameters)
-        YMMYandexMetrica.reportEvent(event.rawValue, parameters: paramenters)
+        YMMYandexMetrica.reportEvent(event.rawValue, parameters: parameters)
     }
 }
