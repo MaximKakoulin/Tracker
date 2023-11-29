@@ -143,6 +143,12 @@ final class TrackersViewController: UIViewController {
     private var trackerRecordStore: TrackerRecordStore
     private let appMetrics: AppMetricsProtocol
 
+    //Для фильтра
+    var currentFilter: FilterType = .allTrackers {
+        didSet {
+            updateTrackersBasedOnFilter()
+        }
+    }
 
     //MARK: -Initializers
     init(trackerDataController: TrackerDataControllerProtocol, trackerCategoryStore: TrackerCategoryStore, categoryViewModel: CategoryViewModel, trackerStore: TrackerStore, trackerRecordStore: TrackerRecordStore, appMetrics: AppMetricsProtocol) {
@@ -188,6 +194,37 @@ final class TrackersViewController: UIViewController {
     }
 
     //MARK: - Private Methods
+    func updateTrackersBasedOnFilter() {
+            switch currentFilter {
+            case .allTrackers:
+                fetchAllTrackers()
+            case .todayTrackers:
+                fetchTrackersForToday()
+            case .completed:
+                fetchCompletedTrackers()
+            case .notCompleted:
+                fetchNotCompletedTrackers()
+            }
+        }
+
+    func fetchAllTrackers() {
+        let weekday = Calendar.current.component(.weekday, from: currentDate) - 1
+        trackerDataController.fetchTrackerCategoriesFor(weekday: weekday, animated: true)
+    }
+
+    func fetchTrackersForToday() {
+        let today = Calendar.current.component(.weekday, from: Date()) - 1
+        trackerDataController.fetchTrackerCategoriesFor(weekday: today, animated: true)
+    }
+
+    func fetchCompletedTrackers() {
+        // Добавить здесь логику для извлечения завершенных трекеров
+    }
+
+    func fetchNotCompletedTrackers() {
+        // Добавить здесь логику для извлечения незавершенных трекеров
+    }
+
     private func configNavigationBar() {
         let leftButton = UIBarButtonItem(image: UIImage(named: "Plus"), style: .done, target: self, action: #selector(addTrackerButtonTapped))
         let rightButton = UIBarButtonItem(customView: datePicker)
@@ -338,10 +375,10 @@ final class TrackersViewController: UIViewController {
 
     @objc private func filtersButtonTapped() {
         appMetrics.reportEvent(screen: appMetricScreenName, event: .click, item: .filter)
-        //        let filtersVC = FiltersViewController()
-        //        let modalNavigationController = UINavigationController(rootViewController: filtersVC)
-        //
-        //        self.present(modalNavigationController, animated: true)
+        let filtersVC = FiltersViewController()
+        filtersVC.delegate = self // Установите себя в качестве делегата
+        let modalNavigationController = UINavigationController(rootViewController: filtersVC)
+        present(modalNavigationController, animated: true)
     }
 }
 
@@ -600,6 +637,50 @@ extension TrackersViewController: UITextFieldDelegate {
         return searchedCategories
     }
 }
+
+//MARK: - Расширение FiltersViewControllerDelegate
+extension TrackersViewController: FiltersViewControllerDelegate {
+    func didSelectFilter(_ filterType: FilterType) {
+        self.currentFilter = filterType
+        self.updateUIForSelectedFilter()
+    }
+}
+
+extension TrackersViewController {
+    func updateUIForSelectedFilter() {
+        switch currentFilter {
+        case .allTrackers:
+            // Логика для фильтра "Все трекеры"
+            break
+        case .todayTrackers:
+            // Логика для фильтра "Трекеры на сегодня"
+            break
+        case .completed:
+            // Логика для фильтра "Завершенные"
+            break
+        case .notCompleted:
+            // Логика для фильтра "Незавершенные"
+            break
+        }
+        updatePlaceholders()
+        collectionView.reloadData()
+    }
+}
+
+extension TrackersViewController {
+    func updatePlaceholders() {
+        imagePlaceholder.isHidden = !visibleCategories.isEmpty
+        textPlaceholder.isHidden = !visibleCategories.isEmpty
+
+        if visibleCategories.isEmpty {
+            textPlaceholder.text = NSLocalizedString("noTrackersPlaceholderText", comment: "")
+        }
+    }
+}
+
+
+
+
 
 
 

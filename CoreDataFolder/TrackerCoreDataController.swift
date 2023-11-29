@@ -139,6 +139,35 @@ extension TrackerDataController: NSFetchedResultsControllerDelegate {
         self.updatedIndexes = nil
         self.movedIndexes = nil
     }
+
+    //ToDo - Методы, которые помогут фильтровать привычки 
+    func fetchCompletedTrackersFor(weekday: Int) {
+        let predicate = NSPredicate(format: "ANY %K.%K == %ld", #keyPath(TrackerCoreData.schedule), #keyPath(ScheduleCoreData.weekday), weekday)
+        let trackerCategories = trackerCategoryStore.fetchTrackerCategoryWithPredicates(predicate)
+        let completedTrackerCategories = trackerCategories.filter { category in
+            category.trackerArray.filter { tracker in
+                trackerRecordStore.fetchTrackerRecordCount(id: tracker.id) > 0
+            }.count > 0
+        }
+        delegate?.updateView(trackerCategories: completedTrackerCategories, animated: true)
+    }
+
+    func fetchNotCompletedTrackersFor(weekday: Int) {
+        let predicate = NSPredicate(format: "ANY %K.%K == %ld", #keyPath(TrackerCoreData.schedule), #keyPath(ScheduleCoreData.weekday), weekday)
+        let trackerCategories = trackerCategoryStore.fetchTrackerCategoryWithPredicates(predicate)
+        let notCompletedTrackerCategories = trackerCategories.filter { category in
+            category.trackerArray.filter { tracker in
+                trackerRecordStore.fetchTrackerRecordCount(id: tracker.id) == 0
+            }.count > 0
+        }
+        delegate?.updateView(trackerCategories: notCompletedTrackerCategories, animated: true)
+    }
 }
+
+
+
+
+
+
 
 

@@ -62,7 +62,6 @@
 		94BBF5D32B10A9F000A2586D /* TrackersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF5D22B10A9F000A2586D /* TrackersViewModel.swift */; };
 		94BBF5E42B171A0D00A2586D /* AppMetricsParametres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF5E32B171A0D00A2586D /* AppMetricsParametres.swift */; };
 		94BBF5E62B171A5300A2586D /* AppMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF5E52B171A5300A2586D /* AppMetrics.swift */; };
-		94CD63EB2B1737C300FA5E41 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CD63EA2B1737C300FA5E41 /* AnalyticsService.swift */; };
 		E99C67AD0D768AED4E4A6ED5 /* Pods_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA02B13F2D3BE7220D1660F /* Pods_Tracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -140,7 +139,6 @@
 		94BBF5D22B10A9F000A2586D /* TrackersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersViewModel.swift; sourceTree = "<group>"; };
 		94BBF5E32B171A0D00A2586D /* AppMetricsParametres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetricsParametres.swift; sourceTree = "<group>"; };
 		94BBF5E52B171A5300A2586D /* AppMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetrics.swift; sourceTree = "<group>"; };
-		94CD63EA2B1737C300FA5E41 /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		D2CE82B5AE86FF2026FA2B51 /* Pods-Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracker.release.xcconfig"; path = "Target Support Files/Pods-Tracker/Pods-Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		EAA02B13F2D3BE7220D1660F /* Pods_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B6AE49A8D4E12F2E85D035 /* Pods-Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Tracker/Pods-Tracker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -372,7 +370,6 @@
 			children = (
 				94BBF5E32B171A0D00A2586D /* AppMetricsParametres.swift */,
 				94BBF5E52B171A5300A2586D /* AppMetrics.swift */,
-				94CD63EA2B1737C300FA5E41 /* AnalyticsService.swift */,
 			);
 			path = AnalyticsServise;
 			sourceTree = "<group>";
@@ -583,7 +580,6 @@
 				94B72BBF2A642E37002973BC /* CellViewModel.swift in Sources */,
 				94B72BDF2A6C43CA002973BC /* EmojiHeader.swift in Sources */,
 				94B72B912A4C3630002973BC /* SceneDelegate.swift in Sources */,
-				94CD63EB2B1737C300FA5E41 /* AnalyticsService.swift in Sources */,
 				94BBF5E42B171A0D00A2586D /* AppMetricsParametres.swift in Sources */,
 				94B72BD42A64489C002973BC /* CategoryViewController.swift in Sources */,
 				94B72BE12A6C5C38002973BC /* ColorCell.swift in Sources */,

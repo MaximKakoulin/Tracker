@@ -7,12 +7,27 @@
 
 import UIKit
 
+//TODO: - Фильтр не реализован, не успеваю доделать
 struct CellData {
     let title: String
     let identifier: String
 }
 
+enum FilterType: Int {
+    case allTrackers = 0
+    case todayTrackers
+    case completed
+    case notCompleted
+}
+
+
+protocol FiltersViewControllerDelegate: AnyObject {
+    func didSelectFilter(_ filterType: FilterType)
+}
+
 class FiltersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+    weak var delegate: FiltersViewControllerDelegate?
 
     let cellDataArray = [
         CellData(title: "Все трекеры", identifier: "allTrackers"),
@@ -73,21 +88,19 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         let cellIdentifier = cellDataArray[indexPath.row].identifier
         switch cellIdentifier {
         case "allTrackers":
-            dismiss(animated: true)
-            break
+            delegate?.didSelectFilter(.allTrackers)
         case "todayTrackers":
-            //TODO: - дописать логику
-            break
+            delegate?.didSelectFilter(.todayTrackers)
         case "completedTrackers":
-            //TODO: - дописать логику
-            break
+            delegate?.didSelectFilter(.completed)
         case "incompleteTrackers":
-            //TODO: - дописать логику
-            break
+            delegate?.didSelectFilter(.notCompleted)
         default:
             break
         }
+        dismiss(animated: true)
     }
+
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // Настройка внешнего вида ячейки
