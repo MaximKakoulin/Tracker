@@ -14,6 +14,7 @@ protocol TrackerRecordStoreProtocol: AnyObject {
     func deleteTrackerRecord(id: UUID, date: String)
     func checkIfTrackerRecordExisted(id: UUID, date: String) -> Bool
     func fetchTrackerRecordCount(id: UUID) -> Int
+    func calculateCompletedTrackers() -> Int
 }
 
 final class TrackerRecordStore: NSObject {
@@ -26,7 +27,7 @@ final class TrackerRecordStore: NSObject {
 extension TrackerRecordStore: TrackerRecordStoreProtocol {
     func addTrackerRecordToCoreData(id: UUID, date: String) {
         let newTrackerRecord = TrackerRecordCoreData(context: context)
-        newTrackerRecord.trackerID = id.uuidString
+        newTrackerRecord.trackerID = id
         newTrackerRecord.date = date
         do {
             try context.save()
@@ -98,6 +99,18 @@ extension TrackerRecordStore: TrackerRecordStoreProtocol {
         } catch {
             print("Exacly tracker doesn't exisists - \(error)")
             return false
+        }
+    }
+
+    func calculateCompletedTrackers() -> Int {
+        let fetchRequest: NSFetchRequest<TrackerRecordCoreData> = TrackerRecordCoreData.fetchRequest()
+
+        do {
+            let allCompletedTrackers = try context.fetch(fetchRequest)
+            return allCompletedTrackers.count
+        } catch {
+            assertionFailure("Failed to fetch all completed trackers data: \(error)")
+            return 0
         }
     }
 }

@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 extension UIColor {
     static let YPBackground = UIColor(named: "YPBackground")
     static let YPRed = UIColor(named: "YPRed")
@@ -19,6 +18,7 @@ extension UIColor {
     static let YPBackgroundDay = UIColor(named: "YPBackgroundDay")
 }
 
+///Цвета для UICollectionView!
 extension UIColor {
     static let colorSection1 = UIColor(named: "Colorselection1")
     static let colorSection2 = UIColor(named: "Colorselection2")
@@ -40,7 +40,7 @@ extension UIColor {
     static let colorSection18 = UIColor(named: "Colorselection18")
 }
 
-//MARK: - Переводим цвета в CoreDate и обрано
+///Для перевода цвета в КорДату и обратно (Привет, Хоббит)
 extension UIColor {
 
     func hexString() -> String {
@@ -56,7 +56,7 @@ extension UIColor {
         )
     }
 
-    func color(from hex: String) -> UIColor {
+    static func color(from hex: String) -> UIColor {
         var rgbValue:UInt64 = 0
         Scanner(string: hex).scanHexInt64(&rgbValue)
         return UIColor(
@@ -65,5 +65,26 @@ extension UIColor {
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
             alpha: CGFloat(1.0)
         )
+    }
+
+    func isEqualToColor(color: UIColor) -> Bool {
+        var red1: CGFloat = 0
+        var green1: CGFloat = 0
+        var blue1: CGFloat = 0
+        var alpha1: CGFloat = 0
+
+        var red2: CGFloat = 0
+        var green2: CGFloat = 0
+        var blue2: CGFloat = 0
+        var alpha2: CGFloat = 0
+
+        self.getRed(&red1, green: &green1, blue: &blue1, alpha: &alpha1)
+        color.getRed(&red2, green: &green2, blue: &blue2, alpha: &alpha2)
+
+        let isEqual = red1 == red2 && green1 == green2 && blue1 == blue2 && alpha1 == alpha2
+        if !isEqual {
+            print("Comparison failed: (\(red1), \(green1), \(blue1), \(alpha1)) vs (\(red2), \(green2), \(blue2), \(alpha2))")
+        }
+        return isEqual
     }
 }
