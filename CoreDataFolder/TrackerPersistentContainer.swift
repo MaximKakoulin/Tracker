@@ -11,7 +11,15 @@ import Foundation
 final class TrackerPersistentContainer {
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "TrackerCoreData")
-        container.loadPersistentStores(completionHandler: { (description, error) in
+
+        // Создаем описание хранилища и добавляем опции для легкой миграции
+        let description = NSPersistentStoreDescription()
+        description.setOption(true as NSNumber, forKey: NSMigratePersistentStoresAutomaticallyOption)
+        description.setOption(true as NSNumber, forKey: NSInferMappingModelAutomaticallyOption)
+        container.persistentStoreDescriptions = [description]
+
+        // Загрузка хранилищ
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 assertionFailure("Ошибка инициализации контейнера CoreData: \(error), \(error.userInfo)")
             }
@@ -23,3 +31,4 @@ final class TrackerPersistentContainer {
         return persistentContainer.viewContext
     }()
 }
+
