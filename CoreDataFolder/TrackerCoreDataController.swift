@@ -140,7 +140,7 @@ extension TrackerDataController: NSFetchedResultsControllerDelegate {
         self.movedIndexes = nil
     }
 
-    //ToDo - Методы, которые помогут фильтровать привычки 
+    //ToDo - Методы, которые помогут фильтровать привычки
     func fetchCompletedTrackersFor(weekday: Int) {
         let predicate = NSPredicate(format: "ANY %K.%K == %ld", #keyPath(TrackerCoreData.schedule), #keyPath(ScheduleCoreData.weekday), weekday)
         let trackerCategories = trackerCategoryStore.fetchTrackerCategoryWithPredicates(predicate)

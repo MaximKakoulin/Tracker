@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		9421FDD32B175D0D0008F7F6 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421FDD22B175D0D0008F7F6 /* FiltersViewController.swift */; };
 		9421FDD52B175D290008F7F6 /* FiltersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421FDD42B175D290008F7F6 /* FiltersCell.swift */; };
-		9421FDF32B1776810008F7F6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9421FDEF2B1776810008F7F6 /* Localizable.strings */; };
-		9421FDF92B1776A00008F7F6 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 9421FDF52B1776A00008F7F6 /* Localizable.stringsdict */; };
-		9421FDFF2B1776D30008F7F6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9421FDFB2B1776D30008F7F6 /* InfoPlist.strings */; };
 		9421FE0B2B177C580008F7F6 /* TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421FE0A2B177C580008F7F6 /* TrackerTests.swift */; };
 		9421FE132B177D180008F7F6 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 9421FE122B177D180008F7F6 /* SnapshotTesting */; };
+		9421FE252B1CAEC50008F7F6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9421FE272B1CAEC50008F7F6 /* Localizable.strings */; };
+		9421FE2F2B1CB00C0008F7F6 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 9421FE312B1CB00C0008F7F6 /* Localizable.stringsdict */; };
+		9421FE362B1CB2470008F7F6 /* infoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9421FE382B1CB2470008F7F6 /* infoPlist.strings */; };
 		942C54862B1749B2009CD716 /* EditingTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942C54852B1749B2009CD716 /* EditingTrackerViewController.swift */; };
 		942C54882B1749E0009CD716 /* EditingTrackerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942C54872B1749E0009CD716 /* EditingTrackerCell.swift */; };
 		942C548A2B174F07009CD716 /* CustomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942C54892B174F07009CD716 /* CustomInfoView.swift */; };
@@ -78,17 +78,17 @@
 /* Begin PBXFileReference section */
 		9421FDD22B175D0D0008F7F6 /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		9421FDD42B175D290008F7F6 /* FiltersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersCell.swift; sourceTree = "<group>"; };
-		9421FDF02B1776810008F7F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "../../../../../Downloads/DailyTrackerApp-Sprint_17-3/ToDoTracker/Resource/en.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		9421FDF12B1776810008F7F6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "../../../../../Downloads/DailyTrackerApp-Sprint_17-3/ToDoTracker/Resource/de.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		9421FDF22B1776810008F7F6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = "../../../../../Downloads/DailyTrackerApp-Sprint_17-3/ToDoTracker/Resource/ru.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		9421FDF62B1776A00008F7F6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = "../../../../Downloads/DailyTrackerApp-Sprint_17-3/ToDoTracker/Resource/de.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
-		9421FDF72B1776A00008F7F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = "../../../../Downloads/DailyTrackerApp-Sprint_17-3/ToDoTracker/Resource/en.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
-		9421FDFC2B1776D30008F7F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "../../../../Downloads/DailyTrackerApp-Sprint_17-3/ToDoTracker/Resource/en.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		9421FDFD2B1776D30008F7F6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = "../../../../Downloads/DailyTrackerApp-Sprint_17-3/ToDoTracker/Resource/ru.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		9421FE002B1777060008F7F6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "../../../../Downloads/DailyTrackerApp-Sprint_17-3/ToDoTracker/Resource/de.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		9421FE012B1777630008F7F6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = "../../../../Downloads/DailyTrackerApp-Sprint_17-3/ToDoTracker/Resource/ru.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		9421FE082B177C580008F7F6 /* TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9421FE0A2B177C580008F7F6 /* TrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerTests.swift; sourceTree = "<group>"; };
+		9421FE262B1CAEC50008F7F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9421FE282B1CAECC0008F7F6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9421FE292B1CAECD0008F7F6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9421FE302B1CB00C0008F7F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		9421FE322B1CB00E0008F7F6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		9421FE332B1CB00F0008F7F6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		9421FE372B1CB2470008F7F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/infoPlist.strings; sourceTree = "<group>"; };
+		9421FE392B1CB2480008F7F6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/infoPlist.strings; sourceTree = "<group>"; };
+		9421FE3A2B1CB2490008F7F6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/infoPlist.strings; sourceTree = "<group>"; };
 		942C54852B1749B2009CD716 /* EditingTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingTrackerViewController.swift; sourceTree = "<group>"; };
 		942C54872B1749E0009CD716 /* EditingTrackerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingTrackerCell.swift; sourceTree = "<group>"; };
 		942C54892B174F07009CD716 /* CustomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInfoView.swift; sourceTree = "<group>"; };
@@ -185,9 +185,9 @@
 		9421FDD62B1773A20008F7F6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				9421FDF52B1776A00008F7F6 /* Localizable.stringsdict */,
-				9421FDFB2B1776D30008F7F6 /* InfoPlist.strings */,
-				9421FDEF2B1776810008F7F6 /* Localizable.strings */,
+				9421FE272B1CAEC50008F7F6 /* Localizable.strings */,
+				9421FE312B1CB00C0008F7F6 /* Localizable.stringsdict */,
+				9421FE382B1CB2470008F7F6 /* infoPlist.strings */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -483,10 +483,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				94B72B9B2A4C3631002973BC /* LaunchScreen.storyboard in Resources */,
-				9421FDFF2B1776D30008F7F6 /* InfoPlist.strings in Resources */,
-				9421FDF32B1776810008F7F6 /* Localizable.strings in Resources */,
-				9421FDF92B1776A00008F7F6 /* Localizable.stringsdict in Resources */,
+				9421FE2F2B1CB00C0008F7F6 /* Localizable.stringsdict in Resources */,
+				9421FE252B1CAEC50008F7F6 /* Localizable.strings in Resources */,
 				94B72B982A4C3631002973BC /* Assets.xcassets in Resources */,
+				9421FE362B1CB2470008F7F6 /* infoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,34 +609,34 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9421FDEF2B1776810008F7F6 /* Localizable.strings */ = {
+		9421FE272B1CAEC50008F7F6 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9421FDF02B1776810008F7F6 /* en */,
-				9421FDF12B1776810008F7F6 /* de */,
-				9421FDF22B1776810008F7F6 /* ru */,
+				9421FE262B1CAEC50008F7F6 /* en */,
+				9421FE282B1CAECC0008F7F6 /* de */,
+				9421FE292B1CAECD0008F7F6 /* ru */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		9421FDF52B1776A00008F7F6 /* Localizable.stringsdict */ = {
+		9421FE312B1CB00C0008F7F6 /* Localizable.stringsdict */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9421FDF62B1776A00008F7F6 /* de */,
-				9421FDF72B1776A00008F7F6 /* en */,
-				9421FE012B1777630008F7F6 /* ru */,
+				9421FE302B1CB00C0008F7F6 /* en */,
+				9421FE322B1CB00E0008F7F6 /* de */,
+				9421FE332B1CB00F0008F7F6 /* ru */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
-		9421FDFB2B1776D30008F7F6 /* InfoPlist.strings */ = {
+		9421FE382B1CB2470008F7F6 /* infoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9421FDFC2B1776D30008F7F6 /* en */,
-				9421FDFD2B1776D30008F7F6 /* ru */,
-				9421FE002B1777060008F7F6 /* de */,
+				9421FE372B1CB2470008F7F6 /* en */,
+				9421FE392B1CB2480008F7F6 /* de */,
+				9421FE3A2B1CB2490008F7F6 /* ru */,
 			);
-			name = InfoPlist.strings;
+			name = infoPlist.strings;
 			sourceTree = "<group>";
 		};
 		94B72B992A4C3631002973BC /* LaunchScreen.storyboard */ = {
