@@ -194,10 +194,10 @@ final class TrackersViewController: UIViewController {
     }
 
     //MARK: - Private Methods
-    func updateTrackersBasedOnFilter() {
+    private func updateTrackersBasedOnFilter() {
             switch currentFilter {
             case .allTrackers:
-                fetchAllTrackers()
+                reloadVisibleCategories()
             case .todayTrackers:
                 fetchTrackersForToday()
             case .completed:
@@ -207,23 +207,51 @@ final class TrackersViewController: UIViewController {
             }
         }
 
-    func fetchAllTrackers() {
+    private func fetchTrackersForToday() {
+        let now = Date()
+        let calendar = Calendar.current
+        let dayOfWeek = calendar.component(.weekday, from: now)
+        TrackersViewController.selectedDate = now
+        datePicker.date = now
+        trackerDataController.fetchTrackerCategoriesFor(weekday: dayOfWeek, animated: true)
+        reloadVisibleCategories()
+    }
+
+    private func fetchAllCategories() {
         let weekday = Calendar.current.component(.weekday, from: currentDate) - 1
-        trackerDataController.fetchTrackerCategoriesFor(weekday: weekday, animated: true)
+        trackerDataController.fetchTrackerCategoriesFor(weekday: weekday, animated: false)
     }
 
-    func fetchTrackersForToday() {
-        let today = Calendar.current.component(.weekday, from: Date()) - 1
-        trackerDataController.fetchTrackerCategoriesFor(weekday: today, animated: true)
+
+    private func fetchCompletedTrackers() {
+        let date = dateFormmater.string(from: currentDate)
+        let allCategories = trackerDataController.trackerCategories // Загрузка всех категорий
+        let completedCategories = allCategories.compactMap { category -> TrackerCategory? in
+            let completedTrackers = category.trackerArray.filter { tracker in
+                trackerRecordStore.checkIfTrackerRecordExisted(id: tracker.id, date: date)
+            }
+            return completedTrackers.isEmpty ? nil : TrackerCategory(headerName: category.headerName, trackerArray: completedTrackers)
+        }
+        visibleCategories = completedCategories
+        collectionView.reloadData()
+        updatePlaceholders()
     }
 
-    func fetchCompletedTrackers() {
-        // Добавить здесь логику для извлечения завершенных трекеров
+    private func fetchNotCompletedTrackers() {
+        let date = dateFormmater.string(from: currentDate)
+        let allCategories = trackerDataController.trackerCategories // Загрузка всех категорий
+        let notCompletedCategories = allCategories.compactMap { category -> TrackerCategory? in
+            let notCompletedTrackers = category.trackerArray.filter { tracker in
+                !trackerRecordStore.checkIfTrackerRecordExisted(id: tracker.id, date: date)
+            }
+            return notCompletedTrackers.isEmpty ? nil : TrackerCategory(headerName: category.headerName, trackerArray: notCompletedTrackers)
+        }
+        visibleCategories = notCompletedCategories
+        collectionView.reloadData()
+        updatePlaceholders()
     }
 
-    func fetchNotCompletedTrackers() {
-        // Добавить здесь логику для извлечения незавершенных трекеров
-    }
+
 
     private func configNavigationBar() {
         let leftButton = UIBarButtonItem(image: UIImage(named: "Plus"), style: .done, target: self, action: #selector(addTrackerButtonTapped))
@@ -360,10 +388,12 @@ final class TrackersViewController: UIViewController {
 
     @objc private func datePickerValueChanged (_ sender: UIDatePicker) {
         TrackersViewController.selectedDate = sender.date
-        let weekday = Calendar.current.component(.weekday, from: currentDate)-1
+        currentDate = sender.date
+        let weekday = Calendar.current.component(.weekday, from: currentDate) - 1
         trackerDataController.fetchTrackerCategoriesFor(weekday: weekday, animated: true)
-        reloadVisibleCategories()
+        updateTrackersBasedOnFilter() // Повторно применяем текущий фильтр после изменения даты
     }
+
 
     @objc private func cancelSearchButtonTapped() {
         searchTextField.text = ""
@@ -375,11 +405,14 @@ final class TrackersViewController: UIViewController {
 
     @objc private func filtersButtonTapped() {
         appMetrics.reportEvent(screen: appMetricScreenName, event: .click, item: .filter)
-        let filtersVC = FiltersViewController()
-        filtersVC.delegate = self // Установите себя в качестве делегата
+
+        // Создаем FiltersViewController с текущим выбранным фильтром
+        let filtersVC = FiltersViewController(currentFilterType: currentFilter)
+        filtersVC.delegate = self // Установил себя в качестве делегата
         let modalNavigationController = UINavigationController(rootViewController: filtersVC)
         present(modalNavigationController, animated: true)
     }
+
 }
 
 //MARK: -NewHabitViewControllerDelegate

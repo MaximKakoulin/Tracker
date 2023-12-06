@@ -26,7 +26,6 @@ protocol FiltersViewControllerDelegate: AnyObject {
 }
 
 class FiltersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
     weak var delegate: FiltersViewControllerDelegate?
 
     let cellDataArray = [
@@ -35,6 +34,8 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         CellData(title: "Завершенные", identifier: "completedTrackers"),
         CellData(title: "Незавершенные", identifier: "incompleteTrackers")
     ]
+
+    let currentFilterType: FilterType // добавил текущий фильтр
 
     private var customView: UIView = {
        let view = UIView()
@@ -48,6 +49,16 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.register(FiltersCell.self, forCellReuseIdentifier: FiltersCell.reuseIdentifier)
         return tableView
     }()
+
+    // добавил инициализатор
+    init(currentFilterType: FilterType) {
+        self.currentFilterType = currentFilterType
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,8 +88,10 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FiltersCell.reuseIdentifier, for: indexPath)
-        cell.textLabel?.text = cellDataArray[indexPath.row].title
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FiltersCell.reuseIdentifier, for: indexPath) as? FiltersCell else { return UITableViewCell() }
+//        cell.textLabel?.text = cellDataArray[indexPath.row].title
+        let isCheckmarkHidden = currentFilterType.rawValue == indexPath.row ? false : true
+        cell.configureCell(titleText: cellDataArray[indexPath.row].title, checkmarkIsHidden: isCheckmarkHidden) // поменял на вызов метода из FiltersCell
         return cell
     }
 
