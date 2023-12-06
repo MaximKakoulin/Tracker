@@ -14,7 +14,7 @@ final class NewTrackerTypeViewController: UIViewController {
     private let habitButton: UIButton = {
         let habitButton = UIButton()
         habitButton.translatesAutoresizingMaskIntoConstraints = false
-        habitButton.setTitle("habitTypeButton", for: .normal)
+        habitButton.setTitle(NSLocalizedString("habitTypeButton", comment: ""), for: .normal)
         habitButton.setTitleColor(.YPWhite, for: .normal)
         habitButton.backgroundColor = .YPBlack
         habitButton.layer.cornerRadius = 16
@@ -28,7 +28,7 @@ final class NewTrackerTypeViewController: UIViewController {
     private let eventButton: UIButton = {
         let eventButton = UIButton()
         eventButton.translatesAutoresizingMaskIntoConstraints = false
-        eventButton.setTitle("eventTypeButton", for: .normal)
+        eventButton.setTitle(NSLocalizedString("eventTypeButton", comment: ""), for: .normal)
         eventButton.setTitleColor(.YPWhite, for: .normal)
         eventButton.backgroundColor = .YPBlack
         eventButton.layer.cornerRadius = 16
