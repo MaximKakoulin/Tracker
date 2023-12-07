@@ -20,7 +20,7 @@ final class TrackerCardViewCell: UICollectionViewCell {
         let cardBackgroundView = UIView()
         cardBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         cardBackgroundView.layer.masksToBounds = true
-        cardBackgroundView.layer.cornerRadius = 16
+        cardBackgroundView.layer.cornerRadius = 12
         return cardBackgroundView
     }()
 
@@ -39,9 +39,18 @@ final class TrackerCardViewCell: UICollectionViewCell {
         let taskLabel = UILabel()
         taskLabel.translatesAutoresizingMaskIntoConstraints = false
         taskLabel.font = UIFont.systemFont(ofSize: 12)
-        taskLabel.textColor = .YPWhite
+        taskLabel.textColor = .white
         return taskLabel
     }()
+
+    private let pinImage: UIImageView = {
+        let pin = UIImageView()
+        pin.image = UIImage(named: "Pin_image")
+        pin.translatesAutoresizingMaskIntoConstraints = false
+        pin.isHidden = false
+        return pin
+    }()
+
     private let dayLabel: UILabel = {
         let dayLabel = UILabel()
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -49,6 +58,7 @@ final class TrackerCardViewCell: UICollectionViewCell {
         dayLabel.textColor = .YPBlack
         return dayLabel
     }()
+
     private let dayCheckButton: UIButton = {
         let dayCheckButton = UIButton()
         dayCheckButton.translatesAutoresizingMaskIntoConstraints = false
@@ -71,6 +81,7 @@ final class TrackerCardViewCell: UICollectionViewCell {
         dayLabel.text = "\(viewModel.dayCounter) \(daysDeclension(for: viewModel.dayCounter))"
         cardBackgroundView.backgroundColor = viewModel.tracker.color
         dayCheckButton.backgroundColor = viewModel.tracker.color
+        pinImage.isHidden = !viewModel.tracker.isPinned
         self.viewModel = viewModel
         dayCheckButtonState()
         dayCheckButtonIsEnabled()
@@ -83,8 +94,10 @@ final class TrackerCardViewCell: UICollectionViewCell {
         addSubview(cardBackgroundView)
         cardBackgroundView.addSubview(emojiLabel)
         cardBackgroundView.addSubview(taskLabel)
+        cardBackgroundView.addSubview(pinImage)
         addSubview(dayLabel)
         addSubview(dayCheckButton)
+
 
         NSLayoutConstraint.activate([
             //Цветная подложка
@@ -97,6 +110,8 @@ final class TrackerCardViewCell: UICollectionViewCell {
             emojiLabel.leadingAnchor.constraint(equalTo: cardBackgroundView.leadingAnchor, constant: 12),
             emojiLabel.heightAnchor.constraint(equalToConstant: 24),
             emojiLabel.widthAnchor.constraint(equalToConstant: 24),
+            pinImage.centerYAnchor.constraint(equalTo: emojiLabel.centerYAnchor),
+            pinImage.trailingAnchor.constraint(equalTo: cardBackgroundView.trailingAnchor, constant: -4),
             //Лэйбл задачи
             taskLabel.bottomAnchor.constraint(equalTo: cardBackgroundView.bottomAnchor, constant: -12),
             taskLabel.leadingAnchor.constraint(equalTo: cardBackgroundView.leadingAnchor, constant: 12),
@@ -113,19 +128,11 @@ final class TrackerCardViewCell: UICollectionViewCell {
         dayCheckButtonState()
     }
 
-    private func daysDeclension(for counter: Int) -> String{
-        let remainder = counter % 10
-        if counter == 11 || counter == 12 || counter == 13 || counter == 14 {
-            return "дней"
-        }
-        switch remainder {
-        case 1:
-            return "день"
-        case 2, 3, 4:
-            return "дня"
-        default:
-            return "дней"
-        }
+    //для склонения дней в ячейке
+    private func daysDeclension(for counter: Int) -> String {
+        let formatString: String = NSLocalizedString("numberOfDays", comment: "")
+        let resultString: String = String.localizedStringWithFormat(formatString, counter)
+        return resultString
     }
 
     //MARK: -Обновления состояния кнопки dayCheckButton в зависимости от значения свойства buttonIsChecked

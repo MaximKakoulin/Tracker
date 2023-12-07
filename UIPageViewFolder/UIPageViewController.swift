@@ -17,8 +17,8 @@ final class OnboardingViewController: UIPageViewController {
     }()
 
     let pageTexts = [
-        NSLocalizedString("Отслеживайте только то, что вы хотите", comment: ""),
-        NSLocalizedString("Даже если это не литры воды и йога", comment: "")]
+        NSLocalizedString("firstOnboardingTitle", comment: ""),
+        NSLocalizedString("secondOnboardingTitle", comment: "")]
     var currentPageIndex = 0
 
     lazy var onboardingLabel: UILabel = {

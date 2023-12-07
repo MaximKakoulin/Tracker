@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 protocol SwitchCellDelegate: AnyObject {
     func switchCellDidToggle(_ cell: SwitchCell, isOn: Bool)
 }

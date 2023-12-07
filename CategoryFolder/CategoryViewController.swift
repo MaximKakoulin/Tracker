@@ -36,7 +36,7 @@ final class CategoryViewController: UIViewController {
         let textPlaceholder = UILabel()
         textPlaceholder.translatesAutoresizingMaskIntoConstraints = false
         textPlaceholder.text = NSLocalizedString(
-            "Привычки и события можно объединить по смыслу", comment: "")
+            "emptyCategoryPlaceholderText", comment: "")
         textPlaceholder.textAlignment = .center
         textPlaceholder.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         textPlaceholder.textColor = .YPBlack
@@ -49,7 +49,7 @@ final class CategoryViewController: UIViewController {
         let addCategoryButton = UIButton()
         addCategoryButton.translatesAutoresizingMaskIntoConstraints = false
         addCategoryButton.setTitle(NSLocalizedString(
-            "Добавить категорию", comment: ""), for: .normal)
+            "addCategoryButton", comment: ""), for: .normal)
         addCategoryButton.setTitleColor(.YPWhite, for: .normal)
         addCategoryButton.backgroundColor = .YPBlack
         addCategoryButton.layer.cornerRadius = 16
@@ -90,7 +90,7 @@ final class CategoryViewController: UIViewController {
     //MARK: -Private Methods
     private func createCategoryLayout() {
         navigationItem.title = NSLocalizedString(
-            "Категории", comment: "")
+            "categoryTitle", comment: "")
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
         navigationItem.hidesBackButton = true
         //---------------------------------------

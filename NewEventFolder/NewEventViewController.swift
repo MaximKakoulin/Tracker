@@ -26,7 +26,7 @@ final class NewEventViewController: UIViewController {
         eventTextField.leftViewMode = .always
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.YPGrey as Any]
         eventTextField.attributedPlaceholder = NSAttributedString(
-            string: NSLocalizedString("Введите название трекера", comment: ""),
+            string: NSLocalizedString("trackerNameTextField", comment: ""),
             attributes: attributes)
         eventTextField.layer.masksToBounds = true
         eventTextField.layer.cornerRadius = 16
@@ -97,7 +97,7 @@ final class NewEventViewController: UIViewController {
         let cancelButton = UIButton()
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.setTitle(NSLocalizedString(
-            "Отменить", comment: ""), for: .normal)
+            "newTrackerVCCancelButton", comment: ""), for: .normal)
         cancelButton.setTitleColor(.YPRed, for: .normal)
         cancelButton.layer.borderColor = UIColor.YPRed?.cgColor
         cancelButton.layer.borderWidth = 2.0
@@ -112,7 +112,7 @@ final class NewEventViewController: UIViewController {
         let createEventButton = UIButton()
         createEventButton.translatesAutoresizingMaskIntoConstraints = false
         createEventButton.setTitle(NSLocalizedString(
-            "Создать", comment: ""), for: .normal)
+            "newTrackerVCCreateButton", comment: ""), for: .normal)
         createEventButton.setTitleColor(.YPWhite, for: .normal)
         createEventButton.backgroundColor = .YPGrey
         createEventButton.layer.cornerRadius = 16
@@ -123,10 +123,11 @@ final class NewEventViewController: UIViewController {
     }()
 
     private var category: String?
-    private var choosedCategoryIndex: Int?
+    private var chosenCategoryIndex: Int?
     private var chosenDays: [Int] = Array(0...6)
     private var chosenColor: UIColor?
     private var chosenEmoji: String?
+    private var isEvent: Bool = true
     private var selectedColorCellIndexPath: IndexPath?
     private var selectedEmojiCellIndexPath: IndexPath?
 
@@ -163,7 +164,7 @@ final class NewEventViewController: UIViewController {
 
     private func createEventLayout() {
         navigationItem.title = NSLocalizedString(
-            "Новое событие", comment: "")
+            "newEventTitle", comment: "")
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
         navigationItem.hidesBackButton = true
 
@@ -235,7 +236,7 @@ final class NewEventViewController: UIViewController {
         ])
     }
 
-    private func checkButtonAccessability() {
+    private func checkButtonAccessibility() {
         if  let text = eventTextField.text,
             !text.isEmpty,
             category != nil,
@@ -262,7 +263,7 @@ final class NewEventViewController: UIViewController {
         let color: UIColor = chosenColor ?? .gray
         let emoji: String = chosenEmoji ?? ""
         if let delegate = delegate {
-            delegate.addNewEvent(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: color, emoji: emoji, schedule: chosenDays)]))
+            delegate.addNewEvent(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: color, emoji: emoji, schedule: chosenDays, isEvent: isEvent, isPinned: false, category: category)]))
         } else {
             print("Delegate is not set")
         }
@@ -298,7 +299,7 @@ extension NewEventViewController: UITableViewDataSource {
 
         if indexPath.row == 0 {
             cell.textLabel?.text = NSLocalizedString(
-                "Категория", comment: "")
+                "chooseCategoryButton", comment: "")
         }
         return cell
     }
@@ -412,7 +413,7 @@ extension NewEventViewController: UICollectionViewDelegateFlowLayout {
                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ColorHeader", for: indexPath)
                 let titleLabel = UILabel()
                 titleLabel.text = NSLocalizedString(
-                    "Цвет", comment: "")
+                    "colorCollectionTitle", comment: "")
                 titleLabel.textColor = .YPBlack
                 titleLabel.font = .boldSystemFont(ofSize: 19)
                 titleLabel.textAlignment = .left
@@ -424,7 +425,7 @@ extension NewEventViewController: UICollectionViewDelegateFlowLayout {
                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "EmojiHeader", for: indexPath)
                 let titleLabel = UILabel()
                 titleLabel.text = NSLocalizedString(
-                    "Emoji", comment: "")
+                    "emojieCollectionTitle", comment: "")
                 titleLabel.textColor = .YPBlack
                 titleLabel.font = .boldSystemFont(ofSize: 19)
                 titleLabel.textAlignment = .left
@@ -447,8 +448,8 @@ extension NewEventViewController: CategoryViewControllerDelegate {
             cell.detailTextLabel?.text = category
         }
         self.category = category
-        choosedCategoryIndex = index
-        checkButtonAccessability()
+        chosenCategoryIndex = index
+        checkButtonAccessibility()
     }
 }
 
@@ -462,7 +463,7 @@ extension NewEventViewController: UITextFieldDelegate {
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        checkButtonAccessability()
+        checkButtonAccessibility()
         eventTextField.resignFirstResponder()
         return true
     }
@@ -475,9 +476,9 @@ extension NewEventViewController: UITextFieldDelegate {
     private func showReminderAlert() {
         let alertController = UIAlertController(
             title: NSLocalizedString(
-                "Напоминание", comment: ""),
+                "eventAlertTitle", comment: ""),
             message: NSLocalizedString(
-                "Сначала выбери Категорию, Эмодзи и Цвет", comment: ""),
+                "eventAlertText", comment: ""),
             preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)

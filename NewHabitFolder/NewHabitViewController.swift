@@ -26,7 +26,7 @@ final class NewHabitViewController: UIViewController {
         habitTextField.leftViewMode = .always
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.YPGrey as Any]
         habitTextField.attributedPlaceholder = NSAttributedString(
-            string: NSLocalizedString("Введите название трекера", comment: ""),
+            string: NSLocalizedString("trackerNameTextField", comment: ""),
             attributes: attributes)
         habitTextField.layer.masksToBounds = true
         habitTextField.layer.cornerRadius = 16
@@ -98,7 +98,7 @@ final class NewHabitViewController: UIViewController {
         let cancelButton = UIButton()
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.setTitle(NSLocalizedString(
-            "Отменить", comment: ""), for: .normal)
+            "newTrackerVCCancelButton", comment: ""), for: .normal)
         cancelButton.setTitleColor(.YPRed, for: .normal)
         cancelButton.layer.borderColor = UIColor.YPRed?.cgColor
         cancelButton.layer.borderWidth = 2.0
@@ -113,7 +113,7 @@ final class NewHabitViewController: UIViewController {
         let createHabitButton = UIButton()
         createHabitButton.translatesAutoresizingMaskIntoConstraints = false
         createHabitButton.setTitle(NSLocalizedString(
-            "Создать", comment: ""), for: .normal)
+            "newTrackerVCCreateButton", comment: ""), for: .normal)
         createHabitButton.setTitleColor(.YPWhite, for: .normal)
         createHabitButton.backgroundColor = .YPGrey
         createHabitButton.layer.cornerRadius = 16
@@ -128,6 +128,7 @@ final class NewHabitViewController: UIViewController {
     private var chosenCategoryIndex: Int?
     private var chosenEmoji: String?
     private var chosenColor: UIColor?
+    private var isEvent: Bool = false
     private var selectedColorCellIndexPath: IndexPath?
     private var selectedEmojiCellIndexPath: IndexPath?
 
@@ -165,7 +166,7 @@ final class NewHabitViewController: UIViewController {
 
     private func createHabitLayout() {
         navigationItem.title = NSLocalizedString(
-            "Новая привычка", comment: "")
+            "newHabitTitle", comment: "")
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
         navigationItem.hidesBackButton = true
 
@@ -237,7 +238,7 @@ final class NewHabitViewController: UIViewController {
         ])
     }
 
-    private func checkButtonAccessability() {
+    private func checkButtonAccessibility() {
         if let text = habitTextField.text,
            !text.isEmpty,
            category != nil,
@@ -265,8 +266,9 @@ final class NewHabitViewController: UIViewController {
         let category: String = category ?? ""
         let color: UIColor = chosenColor ?? .gray
         let emoji: String = chosenEmoji ?? ""
+        let isEvent: Bool = isEvent
         if let delegate = delegate {
-            delegate.addNewHabit(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: color, emoji: emoji, schedule: chosenDays)]))
+            delegate.addNewHabit(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: color, emoji: emoji, schedule: chosenDays, isEvent: isEvent, isPinned: false, category: category)]))
         }
         dismiss(animated: true)
     }
@@ -304,10 +306,10 @@ extension NewHabitViewController: UITableViewDataSource {
 
         if indexPath.row == 0 {
             cell.textLabel?.text = NSLocalizedString(
-                "Категория", comment: "")
+                "chooseCategoryButton", comment: "")
         } else if indexPath.row == 1 {
             cell.textLabel?.text = NSLocalizedString(
-                "Расписание", comment: "")
+                "chooseScheduleButton", comment: "")
         }
         return cell
     }
@@ -422,7 +424,7 @@ extension NewHabitViewController: UICollectionViewDelegateFlowLayout {
                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ColorHeader", for: indexPath)
                 let titleLabel = UILabel()
                 titleLabel.text = NSLocalizedString(
-                    "Цвет", comment: "")
+                    "colorCollectionTitle", comment: "")
                 titleLabel.textColor = .YPBlack
                 titleLabel.font = .boldSystemFont(ofSize: 19)
                 titleLabel.textAlignment = .left
@@ -434,7 +436,7 @@ extension NewHabitViewController: UICollectionViewDelegateFlowLayout {
                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "EmojiHeader", for: indexPath)
                 let titleLabel = UILabel()
                 titleLabel.text = NSLocalizedString(
-                    "Emoji", comment: "")
+                    "emojieCollectionTitle", comment: "")
                 titleLabel.textColor = .YPBlack
                 titleLabel.font = .boldSystemFont(ofSize: 19)
                 titleLabel.textAlignment = .left
@@ -460,7 +462,7 @@ extension NewHabitViewController: CategoryViewControllerDelegate {
         }
         self.category = category
         chosenCategoryIndex = index
-        checkButtonAccessability()
+        checkButtonAccessibility()
     }
 }
 //MARK: -ScheduleViewControllerDelegate
@@ -490,7 +492,7 @@ extension NewHabitViewController: ScheduleViewControllerDelegate {
         if let cell = habitTableView.cellForRow(at: indexPath) as? NewHabitCell {
             cell.detailTextLabel?.text = daysView
         }
-        checkButtonAccessability()
+        checkButtonAccessibility()
     }
 }
 
@@ -504,7 +506,7 @@ extension NewHabitViewController: UITextFieldDelegate {
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        checkButtonAccessability()
+        checkButtonAccessibility()
         habitTextField.resignFirstResponder()
         return true
     }
@@ -516,9 +518,9 @@ extension NewHabitViewController: UITextFieldDelegate {
     private func showReminderAlert() {
         let alertController = UIAlertController(
             title: NSLocalizedString(
-                "Напоминание", comment: ""),
+                "habitAlertTitle", comment: ""),
             message: NSLocalizedString(
-                "Сначала выбери Категорию, Расписание, Эмодзи и цвет", comment: ""),
+                "habitAlertText", comment: ""),
             preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)

@@ -27,6 +27,7 @@ struct TrackerCategoryStoreUpdate {
 }
 
 protocol TrackerCategoryStoreProtocol: AnyObject {
+    //MARK: - ДЛЯ 16 СПРИНТА
     func fetchAllTrackerCategory() -> [String]
     func createNewCategory(category: TrackerCategory) -> Bool
     ///Метод добавления категории и добавления в нее нового трекера
@@ -200,3 +201,4 @@ extension TrackerCategoryStore: TrackerCategoryStoreProtocol {
 
 
 }
+
